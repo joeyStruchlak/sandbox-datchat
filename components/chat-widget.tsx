@@ -92,7 +92,7 @@ export default function ChatWidget() {
               <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center mr-2">
                 <MessageCircle size={16} />
               </div>
-              <h3 className="font-bold">Analytix - SpendBot</h3>
+              <h3 className="font-bold">Financial Assistant</h3>
             </div>
             <Button
               variant="ghost"
@@ -109,8 +109,8 @@ export default function ChatWidget() {
           <div className="flex-1 overflow-y-auto p-3 bg-gray-50 dark:bg-gray-900">
             {messages.length === 0 ? (
               <div className="h-full flex flex-col items-center justify-center text-center p-4">
-                <MessageCircle className="h-12 w-12 text-[#387d55] mb-3" />
-                <h4 className="text-lg font-bold mb-2">Financial Assistant</h4>
+                <img src="/spendBot.png" alt="Chat Icon" className="w-22 h-22" /> 
+                <h4 className="text-lg font-bold mb-2">Analytix - SpendBot</h4>
                 <p className="text-gray-600 dark:text-gray-400 text-sm mb-4">
                   Ask me anything! Chat with your spend data
                 </p>

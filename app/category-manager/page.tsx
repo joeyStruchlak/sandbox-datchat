@@ -1,12 +1,12 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Home } from "lucide-react"
-import Link from "next/link"
-import ChatWidget from "@/components/chat-widget"
+import { useState } from "react";
+import { Home } from "lucide-react";
+import Link from "next/link";
+import ChatWidget from "@/components/chat-widget";
 
 export default function CategoryManager() {
-  const [activeTab, setActiveTab] = useState("goods")
+  const [activeTab, setActiveTab] = useState("goods");
 
   return (
     <div
@@ -42,7 +42,11 @@ export default function CategoryManager() {
                 position: "relative",
               }}
             >
-              <span style={{ color: "white", fontWeight: "bold", fontSize: "20px" }}>S</span>
+              <span
+                style={{ color: "white", fontWeight: "bold", fontSize: "20px" }}
+              >
+                S
+              </span>
               <div
                 style={{
                   position: "absolute",
@@ -57,12 +61,36 @@ export default function CategoryManager() {
                   justifyContent: "center",
                 }}
               >
-                <span style={{ color: "white", fontSize: "8px", fontWeight: "bold" }}>X</span>
+                <span
+                  style={{
+                    color: "white",
+                    fontSize: "8px",
+                    fontWeight: "bold",
+                  }}
+                >
+                  X
+                </span>
               </div>
             </div>
             <div>
-              <div style={{ color: "white", fontSize: "18px", fontWeight: "bold", lineHeight: "1.1" }}>SPEND</div>
-              <div style={{ color: "white", fontSize: "14px", lineHeight: "1.1", letterSpacing: "0.5px" }}>
+              <div
+                style={{
+                  color: "white",
+                  fontSize: "18px",
+                  fontWeight: "bold",
+                  lineHeight: "1.1",
+                }}
+              >
+                SPEND
+              </div>
+              <div
+                style={{
+                  color: "white",
+                  fontSize: "14px",
+                  lineHeight: "1.1",
+                  letterSpacing: "0.5px",
+                }}
+              >
                 ANALYTIX
               </div>
             </div>
@@ -129,7 +157,8 @@ export default function CategoryManager() {
               padding: "14px 28px",
               borderRadius: "24px",
               border: "none",
-              backgroundColor: activeTab === "overview" ? "white" : "transparent",
+              backgroundColor:
+                activeTab === "overview" ? "white" : "transparent",
               color: activeTab === "overview" ? "#2d5a5a" : "white",
               fontWeight: "600",
               cursor: "pointer",
@@ -203,7 +232,9 @@ export default function CategoryManager() {
                 boxShadow: "0 2px 8px rgba(45, 90, 90, 0.2)",
               }}
             >
-              <span style={{ fontSize: "15px", fontWeight: "600" }}>Goods UNSPSC</span>
+              <span style={{ fontSize: "15px", fontWeight: "600" }}>
+                Goods UNSPSC
+              </span>
               <div
                 style={{
                   backgroundColor: "white",
@@ -256,13 +287,11 @@ export default function CategoryManager() {
           fontSize: "15px",
           zIndex: 100,
         }}
-      >
-    
-      </div>
+      ></div>
 
       <ChatWidget />
     </div>
-  )
+  );
 }
 
 function OverviewContent() {
@@ -312,10 +341,25 @@ function OverviewContent() {
                     backgroundColor: "#fafbfc",
                   }}
                 >
-                  <div style={{ fontSize: "2.5rem", fontWeight: "bold", color: "#1e293b", marginBottom: "8px" }}>
+                  <div
+                    style={{
+                      fontSize: "2.5rem",
+                      fontWeight: "bold",
+                      color: "#1e293b",
+                      marginBottom: "8px",
+                    }}
+                  >
                     52.19%
                   </div>
-                  <div style={{ fontSize: "15px", color: "#64748b", fontWeight: "500" }}>Categorised</div>
+                  <div
+                    style={{
+                      fontSize: "15px",
+                      color: "#64748b",
+                      fontWeight: "500",
+                    }}
+                  >
+                    Categorised
+                  </div>
                 </div>
                 <div
                   style={{
@@ -326,10 +370,25 @@ function OverviewContent() {
                     backgroundColor: "#fafbfc",
                   }}
                 >
-                  <div style={{ fontSize: "2.5rem", fontWeight: "bold", color: "#1e293b", marginBottom: "8px" }}>
+                  <div
+                    style={{
+                      fontSize: "2.5rem",
+                      fontWeight: "bold",
+                      color: "#1e293b",
+                      marginBottom: "8px",
+                    }}
+                  >
                     $190.27K
                   </div>
-                  <div style={{ fontSize: "15px", color: "#64748b", fontWeight: "500" }}>Total Spend</div>
+                  <div
+                    style={{
+                      fontSize: "15px",
+                      color: "#64748b",
+                      fontWeight: "500",
+                    }}
+                  >
+                    Total Spend
+                  </div>
                 </div>
                 <div
                   style={{
@@ -340,8 +399,25 @@ function OverviewContent() {
                     backgroundColor: "#fafbfc",
                   }}
                 >
-                  <div style={{ fontSize: "2.5rem", fontWeight: "bold", color: "#1e293b", marginBottom: "8px" }}>1</div>
-                  <div style={{ fontSize: "15px", color: "#64748b", fontWeight: "500" }}>Total Suppliers</div>
+                  <div
+                    style={{
+                      fontSize: "2.5rem",
+                      fontWeight: "bold",
+                      color: "#1e293b",
+                      marginBottom: "8px",
+                    }}
+                  >
+                    1
+                  </div>
+                  <div
+                    style={{
+                      fontSize: "15px",
+                      color: "#64748b",
+                      fontWeight: "500",
+                    }}
+                  >
+                    Total Suppliers
+                  </div>
                 </div>
                 <div
                   style={{
@@ -352,10 +428,25 @@ function OverviewContent() {
                     backgroundColor: "#fafbfc",
                   }}
                 >
-                  <div style={{ fontSize: "2.5rem", fontWeight: "bold", color: "#1e293b", marginBottom: "8px" }}>
+                  <div
+                    style={{
+                      fontSize: "2.5rem",
+                      fontWeight: "bold",
+                      color: "#1e293b",
+                      marginBottom: "8px",
+                    }}
+                  >
                     179
                   </div>
-                  <div style={{ fontSize: "15px", color: "#64748b", fontWeight: "500" }}>Total Transactions</div>
+                  <div
+                    style={{
+                      fontSize: "15px",
+                      color: "#64748b",
+                      fontWeight: "500",
+                    }}
+                  >
+                    Total Transactions
+                  </div>
                 </div>
               </div>
             </div>
@@ -402,10 +493,25 @@ function OverviewContent() {
                     backgroundColor: "#fafbfc",
                   }}
                 >
-                  <div style={{ fontSize: "2.5rem", fontWeight: "bold", color: "#1e293b", marginBottom: "8px" }}>
+                  <div
+                    style={{
+                      fontSize: "2.5rem",
+                      fontWeight: "bold",
+                      color: "#1e293b",
+                      marginBottom: "8px",
+                    }}
+                  >
                     $1,224.30
                   </div>
-                  <div style={{ fontSize: "15px", color: "#64748b", fontWeight: "500" }}>Leakage this Month</div>
+                  <div
+                    style={{
+                      fontSize: "15px",
+                      color: "#64748b",
+                      fontWeight: "500",
+                    }}
+                  >
+                    Leakage this Month
+                  </div>
                 </div>
                 <div
                   style={{
@@ -416,10 +522,25 @@ function OverviewContent() {
                     backgroundColor: "#fafbfc",
                   }}
                 >
-                  <div style={{ fontSize: "2.5rem", fontWeight: "bold", color: "#1e293b", marginBottom: "8px" }}>
+                  <div
+                    style={{
+                      fontSize: "2.5rem",
+                      fontWeight: "bold",
+                      color: "#1e293b",
+                      marginBottom: "8px",
+                    }}
+                  >
                     $3,538.80
                   </div>
-                  <div style={{ fontSize: "15px", color: "#64748b", fontWeight: "500" }}>Leakage this Quarter</div>
+                  <div
+                    style={{
+                      fontSize: "15px",
+                      color: "#64748b",
+                      fontWeight: "500",
+                    }}
+                  >
+                    Leakage this Quarter
+                  </div>
                 </div>
                 <div
                   style={{
@@ -430,10 +551,25 @@ function OverviewContent() {
                     backgroundColor: "#fafbfc",
                   }}
                 >
-                  <div style={{ fontSize: "2.5rem", fontWeight: "bold", color: "#1e293b", marginBottom: "8px" }}>
+                  <div
+                    style={{
+                      fontSize: "2.5rem",
+                      fontWeight: "bold",
+                      color: "#1e293b",
+                      marginBottom: "8px",
+                    }}
+                  >
                     $6,560.67
                   </div>
-                  <div style={{ fontSize: "15px", color: "#64748b", fontWeight: "500" }}>Leakage this Fiscal Year</div>
+                  <div
+                    style={{
+                      fontSize: "15px",
+                      color: "#64748b",
+                      fontWeight: "500",
+                    }}
+                  >
+                    Leakage this Fiscal Year
+                  </div>
                 </div>
                 <div
                   style={{
@@ -444,10 +580,25 @@ function OverviewContent() {
                     backgroundColor: "#fafbfc",
                   }}
                 >
-                  <div style={{ fontSize: "2.5rem", fontWeight: "bold", color: "#1e293b", marginBottom: "8px" }}>
+                  <div
+                    style={{
+                      fontSize: "2.5rem",
+                      fontWeight: "bold",
+                      color: "#1e293b",
+                      marginBottom: "8px",
+                    }}
+                  >
                     $9,911.13
                   </div>
-                  <div style={{ fontSize: "15px", color: "#64748b", fontWeight: "500" }}>Overall Leakage</div>
+                  <div
+                    style={{
+                      fontSize: "15px",
+                      color: "#64748b",
+                      fontWeight: "500",
+                    }}
+                  >
+                    Overall Leakage
+                  </div>
                 </div>
               </div>
             </div>
@@ -527,12 +678,36 @@ function OverviewContent() {
                     }}
                   />
                 </div>
-                <div style={{ fontSize: "13px", color: "#64748b", marginBottom: "12px", fontWeight: "500" }}>
+                <div
+                  style={{
+                    fontSize: "13px",
+                    color: "#64748b",
+                    marginBottom: "12px",
+                    fontWeight: "500",
+                  }}
+                >
                   Select all
                 </div>
-                <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-                  <label style={{ display: "flex", alignItems: "center", gap: "10px", fontSize: "14px" }}>
-                    <input type="checkbox" checked style={{ transform: "scale(1.1)" }} />
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "8px",
+                  }}
+                >
+                  <label
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "10px",
+                      fontSize: "14px",
+                    }}
+                  >
+                    <input
+                      type="checkbox"
+                      checked
+                      style={{ transform: "scale(1.1)" }}
+                    />
                     <span
                       style={{
                         backgroundColor: "#1e293b",
@@ -546,17 +721,49 @@ function OverviewContent() {
                       Finance
                     </span>
                   </label>
-                  <label style={{ display: "flex", alignItems: "center", gap: "10px", fontSize: "14px" }}>
-                    <input type="checkbox" style={{ transform: "scale(1.1)" }} />
+                  <label
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "10px",
+                      fontSize: "14px",
+                    }}
+                  >
+                    <input
+                      type="checkbox"
+                      style={{ transform: "scale(1.1)" }}
+                    />
                     <span style={{ fontWeight: "500" }}>HR</span>
                   </label>
-                  <label style={{ display: "flex", alignItems: "center", gap: "10px", fontSize: "14px" }}>
-                    <input type="checkbox" style={{ transform: "scale(1.1)" }} />
+                  <label
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "10px",
+                      fontSize: "14px",
+                    }}
+                  >
+                    <input
+                      type="checkbox"
+                      style={{ transform: "scale(1.1)" }}
+                    />
                     <span style={{ fontWeight: "500" }}>IT</span>
                   </label>
-                  <label style={{ display: "flex", alignItems: "center", gap: "10px", fontSize: "14px" }}>
-                    <input type="checkbox" style={{ transform: "scale(1.1)" }} />
-                    <span style={{ fontWeight: "500" }}>Operational department</span>
+                  <label
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "10px",
+                      fontSize: "14px",
+                    }}
+                  >
+                    <input
+                      type="checkbox"
+                      style={{ transform: "scale(1.1)" }}
+                    />
+                    <span style={{ fontWeight: "500" }}>
+                      Operational department
+                    </span>
                   </label>
                 </div>
               </div>
@@ -610,12 +817,36 @@ function OverviewContent() {
                     }}
                   />
                 </div>
-                <div style={{ fontSize: "13px", color: "#64748b", marginBottom: "12px", fontWeight: "500" }}>
+                <div
+                  style={{
+                    fontSize: "13px",
+                    color: "#64748b",
+                    marginBottom: "12px",
+                    fontWeight: "500",
+                  }}
+                >
                   Select all
                 </div>
-                <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-                  <label style={{ display: "flex", alignItems: "center", gap: "10px", fontSize: "14px" }}>
-                    <input type="checkbox" checked style={{ transform: "scale(1.1)" }} />
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "8px",
+                  }}
+                >
+                  <label
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "10px",
+                      fontSize: "14px",
+                    }}
+                  >
+                    <input
+                      type="checkbox"
+                      checked
+                      style={{ transform: "scale(1.1)" }}
+                    />
                     <span
                       style={{
                         backgroundColor: "#1e293b",
@@ -636,7 +867,7 @@ function OverviewContent() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 function GoodsContent() {
@@ -676,9 +907,22 @@ function GoodsContent() {
               boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
             }}
           >
-            <div style={{ display: "flex", flexDirection: "column", gap: "16px", height: "100%" }}>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "16px",
+                height: "100%",
+              }}
+            >
               {/* HR */}
-              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                }}
+              >
                 <div
                   style={{
                     fontSize: "15px",
@@ -720,7 +964,13 @@ function GoodsContent() {
               </div>
 
               {/* Finance */}
-              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                }}
+              >
                 <div
                   style={{
                     fontSize: "15px",
@@ -762,7 +1012,13 @@ function GoodsContent() {
               </div>
 
               {/* Supply chain & procurement */}
-              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                }}
+              >
                 <div
                   style={{
                     fontSize: "15px",
@@ -804,7 +1060,13 @@ function GoodsContent() {
               </div>
 
               {/* IT */}
-              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                }}
+              >
                 <div
                   style={{
                     fontSize: "15px",
@@ -846,7 +1108,13 @@ function GoodsContent() {
               </div>
 
               {/* Operational department */}
-              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                }}
+              >
                 <div
                   style={{
                     fontSize: "15px",
@@ -888,7 +1156,13 @@ function GoodsContent() {
               </div>
 
               {/* other */}
-              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                }}
+              >
                 <div
                   style={{
                     fontSize: "15px",
@@ -1037,7 +1311,14 @@ function GoodsContent() {
               }}
             >
               {/* Sample bars with trend line - exact colors and positioning */}
-              <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "6px" }}>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  gap: "6px",
+                }}
+              >
                 <div
                   style={{
                     backgroundColor: "#22c55e",
@@ -1047,10 +1328,27 @@ function GoodsContent() {
                     boxShadow: "0 2px 4px rgba(34, 197, 94, 0.3)",
                   }}
                 ></div>
-                <span style={{ fontSize: "11px", color: "#64748b", fontWeight: "500" }}>Aug</span>
-                <span style={{ fontSize: "10px", color: "#64748b" }}>FY 20</span>
+                <span
+                  style={{
+                    fontSize: "11px",
+                    color: "#64748b",
+                    fontWeight: "500",
+                  }}
+                >
+                  Aug
+                </span>
+                <span style={{ fontSize: "10px", color: "#64748b" }}>
+                  FY 20
+                </span>
               </div>
-              <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "6px" }}>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  gap: "6px",
+                }}
+              >
                 <div
                   style={{
                     backgroundColor: "#22c55e",
@@ -1060,10 +1358,27 @@ function GoodsContent() {
                     boxShadow: "0 2px 4px rgba(34, 197, 94, 0.3)",
                   }}
                 ></div>
-                <span style={{ fontSize: "11px", color: "#64748b", fontWeight: "500" }}>Jan</span>
-                <span style={{ fontSize: "10px", color: "#64748b" }}>FY 21</span>
+                <span
+                  style={{
+                    fontSize: "11px",
+                    color: "#64748b",
+                    fontWeight: "500",
+                  }}
+                >
+                  Jan
+                </span>
+                <span style={{ fontSize: "10px", color: "#64748b" }}>
+                  FY 21
+                </span>
               </div>
-              <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "6px" }}>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  gap: "6px",
+                }}
+              >
                 <div
                   style={{
                     backgroundColor: "#22c55e",
@@ -1073,10 +1388,27 @@ function GoodsContent() {
                     boxShadow: "0 2px 4px rgba(34, 197, 94, 0.3)",
                   }}
                 ></div>
-                <span style={{ fontSize: "11px", color: "#64748b", fontWeight: "500" }}>Feb</span>
-                <span style={{ fontSize: "10px", color: "#64748b" }}>FY 21</span>
+                <span
+                  style={{
+                    fontSize: "11px",
+                    color: "#64748b",
+                    fontWeight: "500",
+                  }}
+                >
+                  Feb
+                </span>
+                <span style={{ fontSize: "10px", color: "#64748b" }}>
+                  FY 21
+                </span>
               </div>
-              <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "6px" }}>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  gap: "6px",
+                }}
+              >
                 <div
                   style={{
                     backgroundColor: "#22c55e",
@@ -1086,10 +1418,27 @@ function GoodsContent() {
                     boxShadow: "0 2px 4px rgba(34, 197, 94, 0.3)",
                   }}
                 ></div>
-                <span style={{ fontSize: "11px", color: "#64748b", fontWeight: "500" }}>Mar</span>
-                <span style={{ fontSize: "10px", color: "#64748b" }}>FY 21</span>
+                <span
+                  style={{
+                    fontSize: "11px",
+                    color: "#64748b",
+                    fontWeight: "500",
+                  }}
+                >
+                  Mar
+                </span>
+                <span style={{ fontSize: "10px", color: "#64748b" }}>
+                  FY 21
+                </span>
               </div>
-              <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "6px" }}>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  gap: "6px",
+                }}
+              >
                 <div
                   style={{
                     backgroundColor: "#22c55e",
@@ -1099,10 +1448,27 @@ function GoodsContent() {
                     boxShadow: "0 2px 4px rgba(34, 197, 94, 0.3)",
                   }}
                 ></div>
-                <span style={{ fontSize: "11px", color: "#64748b", fontWeight: "500" }}>May</span>
-                <span style={{ fontSize: "10px", color: "#64748b" }}>FY 24</span>
+                <span
+                  style={{
+                    fontSize: "11px",
+                    color: "#64748b",
+                    fontWeight: "500",
+                  }}
+                >
+                  May
+                </span>
+                <span style={{ fontSize: "10px", color: "#64748b" }}>
+                  FY 24
+                </span>
               </div>
-              <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "6px" }}>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  gap: "6px",
+                }}
+              >
                 <div
                   style={{
                     backgroundColor: "#22c55e",
@@ -1112,10 +1478,27 @@ function GoodsContent() {
                     boxShadow: "0 2px 4px rgba(34, 197, 94, 0.3)",
                   }}
                 ></div>
-                <span style={{ fontSize: "11px", color: "#64748b", fontWeight: "500" }}>Apr</span>
-                <span style={{ fontSize: "10px", color: "#64748b" }}>FY 24</span>
+                <span
+                  style={{
+                    fontSize: "11px",
+                    color: "#64748b",
+                    fontWeight: "500",
+                  }}
+                >
+                  Apr
+                </span>
+                <span style={{ fontSize: "10px", color: "#64748b" }}>
+                  FY 24
+                </span>
               </div>
-              <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "6px" }}>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  gap: "6px",
+                }}
+              >
                 <div
                   style={{
                     backgroundColor: "#22c55e",
@@ -1125,10 +1508,27 @@ function GoodsContent() {
                     boxShadow: "0 2px 4px rgba(34, 197, 94, 0.3)",
                   }}
                 ></div>
-                <span style={{ fontSize: "11px", color: "#64748b", fontWeight: "500" }}>Sep</span>
-                <span style={{ fontSize: "10px", color: "#64748b" }}>FY 25</span>
+                <span
+                  style={{
+                    fontSize: "11px",
+                    color: "#64748b",
+                    fontWeight: "500",
+                  }}
+                >
+                  Sep
+                </span>
+                <span style={{ fontSize: "10px", color: "#64748b" }}>
+                  FY 25
+                </span>
               </div>
-              <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "6px" }}>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  gap: "6px",
+                }}
+              >
                 <div
                   style={{
                     backgroundColor: "#22c55e",
@@ -1138,10 +1538,27 @@ function GoodsContent() {
                     boxShadow: "0 2px 4px rgba(34, 197, 94, 0.3)",
                   }}
                 ></div>
-                <span style={{ fontSize: "11px", color: "#64748b", fontWeight: "500" }}>Nov</span>
-                <span style={{ fontSize: "10px", color: "#64748b" }}>FY 25</span>
+                <span
+                  style={{
+                    fontSize: "11px",
+                    color: "#64748b",
+                    fontWeight: "500",
+                  }}
+                >
+                  Nov
+                </span>
+                <span style={{ fontSize: "10px", color: "#64748b" }}>
+                  FY 25
+                </span>
               </div>
-              <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "6px" }}>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  gap: "6px",
+                }}
+              >
                 <div
                   style={{
                     backgroundColor: "#22c55e",
@@ -1151,10 +1568,27 @@ function GoodsContent() {
                     boxShadow: "0 2px 4px rgba(34, 197, 94, 0.3)",
                   }}
                 ></div>
-                <span style={{ fontSize: "11px", color: "#64748b", fontWeight: "500" }}>Jan</span>
-                <span style={{ fontSize: "10px", color: "#64748b" }}>FY 26</span>
+                <span
+                  style={{
+                    fontSize: "11px",
+                    color: "#64748b",
+                    fontWeight: "500",
+                  }}
+                >
+                  Jan
+                </span>
+                <span style={{ fontSize: "10px", color: "#64748b" }}>
+                  FY 26
+                </span>
               </div>
-              <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "6px" }}>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  gap: "6px",
+                }}
+              >
                 <div
                   style={{
                     backgroundColor: "#22c55e",
@@ -1164,10 +1598,27 @@ function GoodsContent() {
                     boxShadow: "0 2px 4px rgba(34, 197, 94, 0.3)",
                   }}
                 ></div>
-                <span style={{ fontSize: "11px", color: "#64748b", fontWeight: "500" }}>Oct</span>
-                <span style={{ fontSize: "10px", color: "#64748b" }}>FY 26</span>
+                <span
+                  style={{
+                    fontSize: "11px",
+                    color: "#64748b",
+                    fontWeight: "500",
+                  }}
+                >
+                  Oct
+                </span>
+                <span style={{ fontSize: "10px", color: "#64748b" }}>
+                  FY 26
+                </span>
               </div>
-              <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "6px" }}>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  gap: "6px",
+                }}
+              >
                 <div
                   style={{
                     backgroundColor: "#22c55e",
@@ -1177,8 +1628,18 @@ function GoodsContent() {
                     boxShadow: "0 2px 4px rgba(34, 197, 94, 0.3)",
                   }}
                 ></div>
-                <span style={{ fontSize: "11px", color: "#64748b", fontWeight: "500" }}>Dec</span>
-                <span style={{ fontSize: "10px", color: "#64748b" }}>FY 26</span>
+                <span
+                  style={{
+                    fontSize: "11px",
+                    color: "#64748b",
+                    fontWeight: "500",
+                  }}
+                >
+                  Dec
+                </span>
+                <span style={{ fontSize: "10px", color: "#64748b" }}>
+                  FY 26
+                </span>
               </div>
             </div>
 
@@ -1193,12 +1654,29 @@ function GoodsContent() {
                 fontWeight: "500",
               }}
             >
-              <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-                <div style={{ width: "14px", height: "14px", backgroundColor: "#1e293b", borderRadius: "50%" }}></div>
+              <div
+                style={{ display: "flex", alignItems: "center", gap: "6px" }}
+              >
+                <div
+                  style={{
+                    width: "14px",
+                    height: "14px",
+                    backgroundColor: "#1e293b",
+                    borderRadius: "50%",
+                  }}
+                ></div>
                 <span>Total Spend</span>
               </div>
-              <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-                <div style={{ width: "14px", height: "3px", backgroundColor: "#64748b" }}></div>
+              <div
+                style={{ display: "flex", alignItems: "center", gap: "6px" }}
+              >
+                <div
+                  style={{
+                    width: "14px",
+                    height: "3px",
+                    backgroundColor: "#64748b",
+                  }}
+                ></div>
                 <span>Total Transactions</span>
               </div>
             </div>
@@ -1248,8 +1726,17 @@ function GoodsContent() {
                   marginBottom: "8px",
                 }}
               >
-                <span style={{ fontSize: "15px", fontWeight: "600" }}>Top 2 Suppliers</span>
-                <div style={{ display: "flex", gap: "20px", fontSize: "15px", fontWeight: "600" }}>
+                <span style={{ fontSize: "15px", fontWeight: "600" }}>
+                  Top 2 Suppliers
+                </span>
+                <div
+                  style={{
+                    display: "flex",
+                    gap: "20px",
+                    fontSize: "15px",
+                    fontWeight: "600",
+                  }}
+                >
                   <span>$2.98M</span>
                   <span>98.71%</span>
                 </div>
@@ -1261,8 +1748,17 @@ function GoodsContent() {
                   alignItems: "center",
                 }}
               >
-                <span style={{ fontSize: "15px", fontWeight: "600" }}>Rest of the Suppliers</span>
-                <div style={{ display: "flex", gap: "20px", fontSize: "15px", fontWeight: "600" }}>
+                <span style={{ fontSize: "15px", fontWeight: "600" }}>
+                  Rest of the Suppliers
+                </span>
+                <div
+                  style={{
+                    display: "flex",
+                    gap: "20px",
+                    fontSize: "15px",
+                    fontWeight: "600",
+                  }}
+                >
                   <span>$38.96K</span>
                   <span>1.29%</span>
                 </div>
@@ -1291,26 +1787,82 @@ function GoodsContent() {
                   padding: "16px",
                 }}
               >
-                <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                    <span style={{ fontSize: "14px", fontWeight: "500" }}>NEID</span>
-                    <span style={{ fontSize: "14px", fontWeight: "500" }}>$2.9M</span>
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "10px",
+                  }}
+                >
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                    }}
+                  >
+                    <span style={{ fontSize: "14px", fontWeight: "500" }}>
+                      NEID
+                    </span>
+                    <span style={{ fontSize: "14px", fontWeight: "500" }}>
+                      $2.9M
+                    </span>
                   </div>
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                    <span style={{ fontSize: "14px", fontWeight: "500" }}>CoIncorporated</span>
-                    <span style={{ fontSize: "14px", fontWeight: "500" }}>$0.2M</span>
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                    }}
+                  >
+                    <span style={{ fontSize: "14px", fontWeight: "500" }}>
+                      CoIncorporated
+                    </span>
+                    <span style={{ fontSize: "14px", fontWeight: "500" }}>
+                      $0.2M
+                    </span>
                   </div>
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                    <span style={{ fontSize: "14px", fontWeight: "500" }}>notapino</span>
-                    <span style={{ fontSize: "14px", fontWeight: "500" }}>$0.1M</span>
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                    }}
+                  >
+                    <span style={{ fontSize: "14px", fontWeight: "500" }}>
+                      notapino
+                    </span>
+                    <span style={{ fontSize: "14px", fontWeight: "500" }}>
+                      $0.1M
+                    </span>
                   </div>
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                    <span style={{ fontSize: "14px", fontWeight: "500" }}>Bioplex</span>
-                    <span style={{ fontSize: "14px", fontWeight: "500" }}>$0.0M</span>
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                    }}
+                  >
+                    <span style={{ fontSize: "14px", fontWeight: "500" }}>
+                      Bioplex
+                    </span>
+                    <span style={{ fontSize: "14px", fontWeight: "500" }}>
+                      $0.0M
+                    </span>
                   </div>
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                    <span style={{ fontSize: "14px", fontWeight: "500" }}>NewLabs</span>
-                    <span style={{ fontSize: "14px", fontWeight: "500" }}>$0.0M</span>
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                    }}
+                  >
+                    <span style={{ fontSize: "14px", fontWeight: "500" }}>
+                      NewLabs
+                    </span>
+                    <span style={{ fontSize: "14px", fontWeight: "500" }}>
+                      $0.0M
+                    </span>
                   </div>
                 </div>
                 <div
@@ -1355,7 +1907,14 @@ function GoodsContent() {
             }}
           >
             {/* UNSPSC Categories */}
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "10px", marginBottom: "20px" }}>
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(4, 1fr)",
+                gap: "10px",
+                marginBottom: "20px",
+              }}
+            >
               <div
                 style={{
                   border: "1px solid #e2e8f0",
@@ -1365,8 +1924,18 @@ function GoodsContent() {
                   fontSize: "10px",
                 }}
               >
-                <div style={{ fontSize: "8px", color: "#64748b", marginBottom: "2px" }}>🔒 UNSPSC-Segment</div>
-                <div style={{ fontWeight: "500", marginBottom: "2px" }}>Vehicles and their Access...</div>
+                <div
+                  style={{
+                    fontSize: "8px",
+                    color: "#64748b",
+                    marginBottom: "2px",
+                  }}
+                >
+                  🔒 UNSPSC-Segment
+                </div>
+                <div style={{ fontWeight: "500", marginBottom: "2px" }}>
+                  Vehicles and their Access...
+                </div>
               </div>
               <div
                 style={{
@@ -1377,8 +1946,18 @@ function GoodsContent() {
                   fontSize: "10px",
                 }}
               >
-                <div style={{ fontSize: "8px", color: "#64748b", marginBottom: "2px" }}>🔒 UNSPSC-Family</div>
-                <div style={{ fontWeight: "500", marginBottom: "2px" }}>Motor vehicles</div>
+                <div
+                  style={{
+                    fontSize: "8px",
+                    color: "#64748b",
+                    marginBottom: "2px",
+                  }}
+                >
+                  🔒 UNSPSC-Family
+                </div>
+                <div style={{ fontWeight: "500", marginBottom: "2px" }}>
+                  Motor vehicles
+                </div>
               </div>
               <div
                 style={{
@@ -1389,8 +1968,18 @@ function GoodsContent() {
                   fontSize: "10px",
                 }}
               >
-                <div style={{ fontSize: "8px", color: "#64748b", marginBottom: "2px" }}>🔒 UNSPSC-Class</div>
-                <div style={{ fontWeight: "500", marginBottom: "2px" }}>Passenger motor vehicles</div>
+                <div
+                  style={{
+                    fontSize: "8px",
+                    color: "#64748b",
+                    marginBottom: "2px",
+                  }}
+                >
+                  🔒 UNSPSC-Class
+                </div>
+                <div style={{ fontWeight: "500", marginBottom: "2px" }}>
+                  Passenger motor vehicles
+                </div>
               </div>
               <div
                 style={{
@@ -1401,12 +1990,22 @@ function GoodsContent() {
                   fontSize: "10px",
                 }}
               >
-                <div style={{ fontSize: "8px", color: "#64748b", marginBottom: "2px" }}>🔒 UNSPSC-Comm...</div>
+                <div
+                  style={{
+                    fontSize: "8px",
+                    color: "#64748b",
+                    marginBottom: "2px",
+                  }}
+                >
+                  🔒 UNSPSC-Comm...
+                </div>
               </div>
             </div>
 
             {/* Spending amounts with tree structure */}
-            <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+            <div
+              style={{ display: "flex", flexDirection: "column", gap: "10px" }}
+            >
               <div
                 style={{
                   backgroundColor: "#22c55e",
@@ -1419,7 +2018,9 @@ function GoodsContent() {
                 }}
               >
                 <div>Vehicles and their Access...</div>
-                <div style={{ fontSize: "14px", fontWeight: "bold" }}>$1,995,620.00</div>
+                <div style={{ fontSize: "14px", fontWeight: "bold" }}>
+                  $1,995,620.00
+                </div>
                 <div
                   style={{
                     position: "absolute",
@@ -1448,7 +2049,9 @@ function GoodsContent() {
                   }}
                 >
                   <div>Motor vehicles</div>
-                  <div style={{ fontSize: "13px", fontWeight: "bold" }}>$1,995,620.00</div>
+                  <div style={{ fontSize: "13px", fontWeight: "bold" }}>
+                    $1,995,620.00
+                  </div>
                   <div style={{ fontSize: "10px" }}>$1,080,207.47</div>
                 </div>
 
@@ -1465,7 +2068,9 @@ function GoodsContent() {
                     }}
                   >
                     <div>Passenger motor vehicles</div>
-                    <div style={{ fontSize: "12px", fontWeight: "bold" }}>$1,521,850.00</div>
+                    <div style={{ fontSize: "12px", fontWeight: "bold" }}>
+                      $1,521,850.00
+                    </div>
                   </div>
 
                   <div
@@ -1480,7 +2085,9 @@ function GoodsContent() {
                     }}
                   >
                     <div>Light trucks or sport util</div>
-                    <div style={{ fontSize: "12px", fontWeight: "bold" }}>$1,001,770.00</div>
+                    <div style={{ fontSize: "12px", fontWeight: "bold" }}>
+                      $1,001,770.00
+                    </div>
                   </div>
                 </div>
               </div>
@@ -1512,7 +2119,9 @@ function GoodsContent() {
                   }}
                 >
                   <div>Safety and rescue vehicles</div>
-                  <div style={{ fontSize: "12px", fontWeight: "bold" }}>$881,810.00</div>
+                  <div style={{ fontSize: "12px", fontWeight: "bold" }}>
+                    $881,810.00
+                  </div>
                 </div>
                 <div
                   style={{
@@ -1526,7 +2135,9 @@ function GoodsContent() {
                   }}
                 >
                   <div>Automobiles or cars</div>
-                  <div style={{ fontSize: "12px", fontWeight: "bold" }}>$140,580.00</div>
+                  <div style={{ fontSize: "12px", fontWeight: "bold" }}>
+                    $140,580.00
+                  </div>
                 </div>
               </div>
 
@@ -1543,7 +2154,9 @@ function GoodsContent() {
                   }}
                 >
                   <div>Specialized and recreatio...</div>
-                  <div style={{ fontSize: "12px", fontWeight: "bold" }}>$91,960.00</div>
+                  <div style={{ fontSize: "12px", fontWeight: "bold" }}>
+                    $91,960.00
+                  </div>
                 </div>
                 <div
                   style={{
@@ -1557,7 +2170,9 @@ function GoodsContent() {
                   }}
                 >
                   <div>Buses</div>
-                  <div style={{ fontSize: "12px", fontWeight: "bold" }}>$121,000.00</div>
+                  <div style={{ fontSize: "12px", fontWeight: "bold" }}>
+                    $121,000.00
+                  </div>
                 </div>
               </div>
             </div>
@@ -1565,5 +2180,5 @@ function GoodsContent() {
         </div>
       </div>
     </div>
-  )
+  );
 }

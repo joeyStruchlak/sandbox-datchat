@@ -7,7 +7,7 @@ export class SQLGuardrails {
   // Allowed SQL operations (read-only)
   static ALLOWED_OPERATIONS = [
     "SELECT",
-    "WITH", // For CTEs
+    "WITH", 
   ];
 
   // Forbidden SQL keywords and patterns
