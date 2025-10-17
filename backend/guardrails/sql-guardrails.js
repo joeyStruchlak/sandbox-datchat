@@ -5,10 +5,7 @@
 
 export class SQLGuardrails {
   // Allowed SQL operations (read-only)
-  static ALLOWED_OPERATIONS = [
-    "SELECT",
-    "WITH", 
-  ];
+  static ALLOWED_OPERATIONS = ["SELECT", "WITH"];
 
   // Forbidden SQL keywords and patterns
   static FORBIDDEN_KEYWORDS = [
@@ -33,7 +30,7 @@ export class SQLGuardrails {
   ];
 
   // Allowed tables for querying
-  static ALLOWED_TABLES = ["goods_invoicefields", "goods_lineitems_ps"];
+  static ALLOWED_TABLES = ["goods_invoicefields_temp", "goods_lineitems_temp"];
 
   // Maximum result limit
   static MAX_RESULTS = 1000;
@@ -80,7 +77,7 @@ export class SQLGuardrails {
       return {
         isValid: false,
         message:
-          "Query must reference allowed tables: goods_invoicefields, goods_lineitems_ps",
+          "Query must reference allowed tables: goods_invoicefields_temp, goods_lineitems_temp",
       };
     }
 

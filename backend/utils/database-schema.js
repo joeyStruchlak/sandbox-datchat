@@ -4,7 +4,7 @@
  */
 
 export const DATABASE_SCHEMA = {
-  goods_invoicefields: {
+  goods_invoicefields_temp: {
     description: "Main invoice header information",
     columns: {
       INVOICE_ID: "Unique identifier for each invoice (nvarchar)",
@@ -26,12 +26,12 @@ export const DATABASE_SCHEMA = {
     ],
   },
 
-  goods_lineitems_ps: {
+  goods_lineitems_temp: {
     description: "Detailed line items for each invoice",
     columns: {
       LINE_ID: "Unique identifier for each line item (nvarchar)",
       INVOICE_NUMBER:
-        "Invoice number (nvarchar) - links to goods_invoicefields",
+        "Invoice number (nvarchar) - links to goods_invoicefields_temp",
       INVOICE_DATE: "Date of the invoice (nvarchar)",
       LINE_NUMBER: "Line number within the invoice (nvarchar)",
       SA_HEALTH_CATALOGUE_NUMBER: "SA Health catalogue reference (nvarchar)",
@@ -70,7 +70,7 @@ Many numeric fields are stored as NVARCHAR (text) and must be converted before m
 
 AVAILABLE TABLES AND SCHEMA:
 
-1. goods_invoicefields (Invoice Headers):
+1. goods_invoicefields_temp (Invoice Headers):
    - INVOICE_ID (nvarchar): Unique invoice identifier
    - INVOICE_NUMBER (nvarchar): Supplier invoice number
    - PURCHASE_ORDER_NUMBER (nvarchar): PO number
@@ -80,7 +80,7 @@ AVAILABLE TABLES AND SCHEMA:
    - INCLUDES_GST (nvarchar): GST inclusion flag
    - SUPPLIER_NAME (nvarchar): Supplier name
 
-2. goods_lineitems_ps (Invoice Line Items):
+2. goods_lineitems_temp (Invoice Line Items):
    - LINE_ID (nvarchar): Unique line identifier
    - INVOICE_NUMBER (nvarchar): Links to invoice header
    - INVOICE_DATE (nvarchar): Invoice date
@@ -130,7 +130,7 @@ QUERY GENERATION RULES:
 COMMON QUERY PATTERNS WITH PROPER CASTING:
 - Supplier spend analysis: 
   SELECT TOP 10 i.SUPPLIER_NAME, SUM(TRY_CAST(i.INVOICE_TOTAL AS DECIMAL(18,2))) as Total_Spend 
-  FROM goods_invoicefields i 
+  FROM goods_invoicefields_temp i 
   WHERE TRY_CAST(i.INVOICE_TOTAL AS DECIMAL(18,2)) IS NOT NULL
   GROUP BY i.SUPPLIER_NAME 
   ORDER BY Total_Spend DESC
@@ -145,7 +145,7 @@ RESPONSE FORMAT:
 Return ONLY the SQL query, no explanations or markdown formatting.
 
 Example user request: "Show me top 10 suppliers by total spend"
-Example response: SELECT TOP 10 i.SUPPLIER_NAME, SUM(TRY_CAST(i.INVOICE_TOTAL AS DECIMAL(18,2))) as Total_Spend FROM goods_invoicefields i WHERE TRY_CAST(i.INVOICE_TOTAL AS DECIMAL(18,2)) IS NOT NULL GROUP BY i.SUPPLIER_NAME ORDER BY Total_Spend DESC
+Example response: SELECT TOP 10 i.SUPPLIER_NAME, SUM(TRY_CAST(i.INVOICE_TOTAL AS DECIMAL(18,2))) as Total_Spend FROM goods_invoicefields_temp i WHERE TRY_CAST(i.INVOICE_TOTAL AS DECIMAL(18,2)) IS NOT NULL GROUP BY i.SUPPLIER_NAME ORDER BY Total_Spend DESC
 
 Generate a SQL query for the following request:
 `;
@@ -155,7 +155,7 @@ You are an expert SQL query generator for Spend Analytix financial data analysis
 
 CRITICAL TABLE STRUCTURE AND RELATIONSHIPS:
 
-1. goods_invoicefields (Invoice Headers) - Contains SUPPLIER_NAME
+1. goods_invoicefields_temp (Invoice Headers) - Contains SUPPLIER_NAME
    - INVOICE_ID (nvarchar): Unique invoice identifier  
    - INVOICE_NUMBER (nvarchar): Supplier invoice number [PRIMARY KEY for JOINs]
    - PURCHASE_ORDER_NUMBER (nvarchar): PO number
@@ -165,9 +165,9 @@ CRITICAL TABLE STRUCTURE AND RELATIONSHIPS:
    - INCLUDES_GST (nvarchar): GST inclusion flag
    - SUPPLIER_NAME (nvarchar): Supplier name - ONLY EXISTS IN THIS TABLE
 
-2. goods_lineitems_ps (Invoice Line Items) - Does NOT contain SUPPLIER_NAME
+2. goods_lineitems_temp (Invoice Line Items) - Does NOT contain SUPPLIER_NAME
    - LINE_ID (nvarchar): Unique line identifier
-   - INVOICE_NUMBER (nvarchar): Links to goods_invoicefields [FOREIGN KEY]
+   - INVOICE_NUMBER (nvarchar): Links to goods_invoicefields_temp [FOREIGN KEY]
    - INVOICE_DATE (nvarchar): Invoice date - CAST to DATE for date operations
    - LINE_NUMBER (nvarchar): Line sequence number
    - SA_HEALTH_CATALOGUE_NUMBER (nvarchar): Catalogue reference
@@ -188,15 +188,15 @@ CRITICAL TABLE STRUCTURE AND RELATIONSHIPS:
 
 CRITICAL JOIN RULE:
 - To get SUPPLIER_NAME with line item data, you MUST JOIN: 
-  FROM goods_invoicefields i INNER JOIN goods_lineitems_ps l ON i.INVOICE_NUMBER = l.INVOICE_NUMBER
-- SUPPLIER_NAME is ONLY available as i.SUPPLIER_NAME (from goods_invoicefields)
+  FROM goods_invoicefields_temp i INNER JOIN goods_lineitems_temp l ON i.INVOICE_NUMBER = l.INVOICE_NUMBER
+- SUPPLIER_NAME is ONLY available as i.SUPPLIER_NAME (from goods_invoicefields_temp)
 - NEVER reference l.SUPPLIER_NAME as it does not exist
 
 MANDATORY DATA TYPE CONVERSION RULES:
-1. For goods_invoicefields numeric operations:
+1. For goods_invoicefields_temp numeric operations:
    - TRY_CAST(INVOICE_TOTAL AS DECIMAL(18,2))
    
-2. For goods_lineitems_ps (already proper numeric types):
+2. For goods_lineitems_temp (already proper numeric types):
    - QTY_RECEIVED, UNIT_PRICE, TOTAL_LINE_AMOUNT_EXCL_GST, GST, TOTAL_LINE_AMOUNT_INC_GST, LEAKAGE_AMOUNT, CATALOGUE_PRICE are already numeric
    
 3. For date operations on both tables:
@@ -213,8 +213,8 @@ SELECT
     i.SUPPLIER_NAME,
     SUM(l.LEAKAGE_AMOUNT) AS Total_Leakage,
     (SUM(l.LEAKAGE_AMOUNT) / SUM(l.TOTAL_LINE_AMOUNT_INC_GST)) * 100 AS Leakage_Rate_Percent
-FROM goods_invoicefields i
-INNER JOIN goods_lineitems_ps l ON i.INVOICE_NUMBER = l.INVOICE_NUMBER
+FROM goods_invoicefields_temp i
+INNER JOIN goods_lineitems_temp l ON i.INVOICE_NUMBER = l.INVOICE_NUMBER
 WHERE l.LEAKAGE_AMOUNT > 0
 GROUP BY i.SUPPLIER_NAME
 ORDER BY Total_Leakage DESC;
@@ -224,7 +224,7 @@ SELECT
     i.LHN as Department,
     i.SUPPLIER_NAME,
     SUM(TRY_CAST(i.INVOICE_TOTAL AS DECIMAL(18,2))) as Total_Spend
-FROM goods_invoicefields i
+FROM goods_invoicefields_temp i
 GROUP BY i.LHN, i.SUPPLIER_NAME
 ORDER BY Total_Spend DESC;
 

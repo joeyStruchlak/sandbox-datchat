@@ -5,20 +5,29 @@ import axios from "axios";
 import ReactMarkdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
-import { MessageCircle, X, UserIcon, BarChart3, Send } from "lucide-react";
+// Added Maximize2 and Minimize2 for the expand/collapse feature
+import {
+  MessageCircle,
+  X,
+  UserIcon,
+  Send,
+  Maximize2,
+  Minimize2,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { FaUserCircle } from "react-icons/fa";
 
 interface Message {
   role: "user" | "assistant";
   content: string;
 }
 
-export default function ChatWidget() {
+export default function ExpandableChatWidget() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  // Added state for expansion
+  const [isExpanded, setIsExpanded] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -74,6 +83,48 @@ export default function ChatWidget() {
 
   const toggleChat = () => {
     setIsOpen(!isOpen);
+    // Reset expansion state when closing
+    if (!isOpen) {
+      setIsExpanded(false);
+    }
+  };
+
+  // Function to toggle the expanded state
+  const toggleExpanded = () => {
+    setIsExpanded(!isExpanded);
+  };
+
+  // Dynamic Tailwind class string for size management
+  const chatDimensions = isExpanded
+    ? "w-[90vw] h-[80vh] max-w-4xl"
+    : "w-80 md:w-96 h-[500px]";
+
+  // Markdown components logic (copied from the second version)
+  const markdownComponents = {
+    code({ node, inline, className, children, ...props }: any) {
+      const match = /language-(\w+)/.exec(className || "");
+      return !inline && match ? (
+        <div className="my-2 rounded overflow-hidden">
+          <div className="flex items-center justify-between bg-gray-800 px-2 py-1 text-xs text-gray-200">
+            <span>{match[1]}</span>
+          </div>
+          <SyntaxHighlighter
+            style={vscDarkPlus}
+            language={match[1]}
+            PreTag="div"
+            {...props}
+          >
+            {String(children).replace(/\n$/, "")}
+          </SyntaxHighlighter>
+        </div>
+      ) : (
+        <code className={className} {...props}>
+          {children}
+        </code>
+      );
+    },
+    // The second component didn't explicitly use a custom 'a' component,
+    // so we'll keep the standard ReactMarkdown behavior here.
   };
 
   return (
@@ -87,9 +138,11 @@ export default function ChatWidget() {
         {isOpen ? <X size={24} /> : <MessageCircle size={24} />}
       </Button>
 
-      {/* Chat window */}
+      {/* Chat window - uses dynamic dimensions */}
       {isOpen && (
-        <div className="absolute bottom-16 right-0 w-80 md:w-96 h-[500px] bg-white dark:bg-gray-800 rounded-lg shadow-2xl flex flex-col overflow-hidden border border-gray-200 dark:border-gray-700">
+        <div
+          className={`absolute bottom-16 right-0 ${chatDimensions} bg-white dark:bg-gray-800 rounded-lg shadow-2xl flex flex-col overflow-hidden border border-gray-200 dark:border-gray-700 transition-all duration-300`}
+        >
           {/* Chat header */}
           <div className="bg-gradient-to-r from-[#183e4a] via-[#387d55] to-[#65a17b] text-white p-3 flex items-center justify-between">
             <div className="flex items-center">
@@ -98,21 +151,35 @@ export default function ChatWidget() {
               </div>
               <h3 className="font-bold">Chat with your Data</h3>
             </div>
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={toggleChat}
-              className="text-white hover:bg-black/20 h-8 w-8"
-              aria-label="Close chat"
-            >
-              <X size={18} />
-            </Button>
+            <div className="flex items-center gap-2">
+              {/* Expand/Minimize Button */}
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={toggleExpanded}
+                className="text-white hover:bg-black/20 h-8 w-8"
+                aria-label={isExpanded ? "Minimize chat" : "Expand chat"}
+              >
+                {isExpanded ? <Minimize2 size={18} /> : <Maximize2 size={18} />}
+              </Button>
+              {/* Close Button */}
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={toggleChat}
+                className="text-white hover:bg-black/20 h-8 w-8"
+                aria-label="Close chat"
+              >
+                <X size={18} />
+              </Button>
+            </div>
           </div>
 
           {/* Chat messages */}
           <div className="flex-1 overflow-y-auto p-3 bg-gray-50 dark:bg-gray-900">
             {messages.length === 0 ? (
               <div className="h-full flex flex-col items-center justify-center text-center p-4">
+                {/* Kept the original image tag from the second component, as requested */}
                 <img
                   src="/spendBot.png"
                   alt="Chat Icon"
@@ -126,32 +193,34 @@ export default function ChatWidget() {
                   <button
                     onClick={() =>
                       handleExampleClick(
-                        "how many IPP submissions were made FY25?"
+                        "Invoice vs Line Item Value Reconciliation"
                       )
                     }
                     className="w-full text-left p-2 text-sm bg-gray-100 dark:bg-gray-800 rounded hover:bg-[#183e4a]/10 dark:hover:bg-[#387d55]/20 transition-colors"
                   >
-                    how many IPP submissions were made FY25?
+                    Invoice vs Line Item Value Reconciliation
                   </button>
                   <button
                     onClick={() =>
                       handleExampleClick(
-                        "What’s the total spend on non-catalogue items?"
+                        "What is the total spend on non-catalogue items based on the invoice line data?"
                       )
                     }
                     className="w-full text-left p-2 text-sm bg-gray-100 dark:bg-gray-800 rounded hover:bg-[#183e4a]/10 dark:hover:bg-[#387d55]/20 transition-colors"
                   >
-                    What’s the total spend on non-catalogue items?
+                    What is the total spend on non-catalogue items based on the
+                    invoice line data?
                   </button>
                   <button
                     onClick={() =>
                       handleExampleClick(
-                        "How Many Tenders were released to market FY25?"
+                        "What’s the total leakage from suppliers that are supposed to be under contract?"
                       )
                     }
                     className="w-full text-left p-2 text-sm bg-gray-100 dark:bg-gray-800 rounded hover:bg-[#183e4a]/10 dark:hover:bg-[#387d55]/20 transition-colors"
                   >
-                    How Many Tenders were released to market FY25?
+                    What’s the total leakage from suppliers that are supposed to
+                    be under contract?
                   </button>
                 </div>
               </div>
@@ -178,41 +247,9 @@ export default function ChatWidget() {
                           </div>
                         )}
                         <div>
-                          <ReactMarkdown
-                            children={msg.content}
-                            components={{
-                              code({
-                                node,
-                                inline,
-                                className,
-                                children,
-                                ...props
-                              }: any) {
-                                const match = /language-(\w+)/.exec(
-                                  className || ""
-                                );
-                                return !inline && match ? (
-                                  <div className="my-2 rounded overflow-hidden">
-                                    <div className="flex items-center justify-between bg-gray-800 px-2 py-1 text-xs text-gray-200">
-                                      <span>{match[1]}</span>
-                                    </div>
-                                    <SyntaxHighlighter
-                                      style={vscDarkPlus}
-                                      language={match[1]}
-                                      PreTag="div"
-                                      {...props}
-                                    >
-                                      {String(children).replace(/\n$/, "")}
-                                    </SyntaxHighlighter>
-                                  </div>
-                                ) : (
-                                  <code className={className} {...props}>
-                                    {children}
-                                  </code>
-                                );
-                              },
-                            }}
-                          />
+                          <ReactMarkdown components={markdownComponents}>
+                            {msg.content}
+                          </ReactMarkdown>
                         </div>
                         {msg.role === "user" && (
                           <div className="w-6 h-6 rounded-full bg-gradient-to-r from-[#183e4a] via-[#387d55] to-[#65a17b] flex items-center justify-center ml-2 flex-shrink-0">
@@ -284,7 +321,7 @@ export default function ChatWidget() {
         </div>
       )}
 
-      {/* Toast styles */}
+      {/* Toast styles (verbatim copy) */}
       <style jsx global>{`
         .toast {
           position: fixed;

@@ -6,7 +6,7 @@ Only return the SQL query. Do not include comments, explanations, or formatting.
 
 Use this database schema:
 
-Table: goods_invoicefields
+Table: goods_invoicefields_temp
 - INVOICE_ID (int)
 - INVOICE_NUMBER (varchar)
 - PURCHASE_ORDER_NUMBER (varchar)

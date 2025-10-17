@@ -9,7 +9,6 @@ This is the "brain" that coordinates everything. When a user sends a message:
 - Routes it to the right "department"
 - Sends the response back to the user
 
-
 ### **2. `spend-analytix-context.js` - The Bot's Personality & Knowledge (Like a Training Manual)**
 
 This gives your bot its "personality" and knowledge about Spend Analytix:
@@ -18,7 +17,6 @@ This gives your bot its "personality" and knowledge about Spend Analytix:
 - Defines how the bot should talk (professional, helpful)
 - Provides context so the bot knows it's a spend management assistant
 - Like giving an employee a handbook about the company
-
 
 ### **3. `query-classifier.js` - The Decision Maker (Like a Receptionist)**
 
@@ -29,7 +27,6 @@ This figures out what the user actually wants:
 - Uses keywords and patterns to make this decision
 - Prevents the system from trying to run SQL for simple greetings
 
-
 ### **4. `database-schema.js` - The Database Map (Like a Menu)**
 
 This tells the AI exactly what data is available:
@@ -38,7 +35,6 @@ This tells the AI exactly what data is available:
 - Describes each column (like "Invoice Total", "Supplier Name")
 - **Critical Fix**: Handles the data type problem you had - converts text numbers to real numbers
 - Provides examples of how to write proper SQL queries
-
 
 ### **5. `sql-guardrails.js` - The Security Guard (Like a Bouncer)**
 
@@ -50,7 +46,6 @@ This protects your database from dangerous requests:
 - **Fixes common issues** automatically (like the text-to-number conversion problem)
 - Like having a security guard who checks everyone before they enter
 
-
 ### **6. `result-formatter.js` - The Presentation Expert (Like a Waiter)**
 
 This makes the raw data look nice for users:
@@ -61,17 +56,13 @@ This makes the raw data look nice for users:
 - Organizes data in tables and lists
 - Like a waiter presenting food nicely on a plate
 
-
 ## **How It All Works Together (The Complete Flow)**
 
 1. **User asks**: "What's the total value of all invoices?"
 2. **Query Classifier** says: "This is a data request, not casual chat"
 3. **Main Controller** sends it to the AI with the **Database Schema** context
-4. **AI generates SQL**: `SELECT SUM(TRY_CAST(INVOICE_TOTAL AS DECIMAL(18,2))) FROM goods_invoicefields`
+4. **AI generates SQL**: `SELECT SUM(TRY_CAST(INVOICE_TOTAL AS DECIMAL(18,2))) FROM goods_invoicefields_temp`
 5. **SQL Guardrails** checks: "This query is safe, and I'll fix the data type issue"
 6. **Database** runs the query and returns raw results
 7. **Result Formatter** makes it pretty: "Total invoice value: $2,456,789.50 across 1,247 invoices"
 8. **Main Controller** sends the formatted answer back to user
-
-
-

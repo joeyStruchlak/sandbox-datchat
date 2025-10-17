@@ -17,13 +17,14 @@ export const PREDEFINED_QUERIES = {
           THEN ROUND((SUM(l.LEAKAGE_AMOUNT) / SUM(l.TOTAL_LINE_AMOUNT_INC_GST)) * 100, 2)
           ELSE 0 
         END as Leakage_Percentage
-      FROM goods_invoicefields i
-      INNER JOIN goods_lineitems_ps l ON i.INVOICE_NUMBER = l.INVOICE_NUMBER
+      FROM goods_invoicefields_temp i
+      INNER JOIN goods_lineitems_temp l ON i.INVOICE_NUMBER = l.INVOICE_NUMBER
       WHERE l.LEAKAGE_AMOUNT > 0
       GROUP BY i.LHN
       ORDER BY Total_Leakage DESC
     `,
-    description: "Comprehensive spend leakage analysis by department with percentages",
+    description:
+      "Comprehensive spend leakage analysis by department with percentages",
     category: "Financial Risk",
   },
 
@@ -40,8 +41,8 @@ export const PREDEFINED_QUERIES = {
           THEN ROUND((SUM(l.LEAKAGE_AMOUNT) / SUM(TRY_CAST(i.INVOICE_TOTAL AS DECIMAL(18,2)))) * 100, 2)
           ELSE 0 
         END as Leakage_Rate_Percent
-      FROM goods_invoicefields i
-      LEFT JOIN goods_lineitems_ps l ON i.INVOICE_NUMBER = l.INVOICE_NUMBER
+      FROM goods_invoicefields_temp i
+      LEFT JOIN goods_lineitems_temp l ON i.INVOICE_NUMBER = l.INVOICE_NUMBER
       WHERE TRY_CAST(i.INVOICE_TOTAL AS DECIMAL(18,2)) IS NOT NULL
       GROUP BY i.SUPPLIER_NAME
       ORDER BY Total_Spend DESC
@@ -66,7 +67,7 @@ export const PREDEFINED_QUERIES = {
           ELSE 0 
         END as Leakage_Percentage,
         AVG(l.UNIT_PRICE) as Average_Unit_Price
-      FROM goods_lineitems_ps l
+      FROM goods_lineitems_temp l
       WHERE l.TOTAL_LINE_AMOUNT_INC_GST IS NOT NULL
       GROUP BY 
         CASE 
@@ -75,7 +76,8 @@ export const PREDEFINED_QUERIES = {
         END
       ORDER BY Total_Leakage DESC
     `,
-    description: "Comparison of catalogue vs non-catalogue items showing leakage rates",
+    description:
+      "Comparison of catalogue vs non-catalogue items showing leakage rates",
     category: "Procurement Strategy",
   },
 
@@ -92,12 +94,13 @@ export const PREDEFINED_QUERIES = {
           THEN ROUND((SUM(l.LEAKAGE_AMOUNT) / SUM(l.TOTAL_LINE_AMOUNT_INC_GST)) * 100, 2)
           ELSE 0 
         END as Leakage_Rate_Percent
-      FROM goods_lineitems_ps l
+      FROM goods_lineitems_temp l
       WHERE l.CONTRACT_STATUS IS NOT NULL AND l.CONTRACT_STATUS != ''
       GROUP BY l.CONTRACT_STATUS
       ORDER BY Total_Spend DESC
     `,
-    description: "Contract compliance analysis showing spend and leakage by contract status",
+    description:
+      "Contract compliance analysis showing spend and leakage by contract status",
     category: "Contract Management",
   },
 
@@ -120,12 +123,13 @@ export const PREDEFINED_QUERIES = {
           WHEN l.IS_CATALOGUE = 1 THEN 'Catalogue'
           ELSE 'Non-Catalogue'
         END as Item_Type
-      FROM goods_invoicefields i
-      INNER JOIN goods_lineitems_ps l ON i.INVOICE_NUMBER = l.INVOICE_NUMBER
+      FROM goods_invoicefields_temp i
+      INNER JOIN goods_lineitems_temp l ON i.INVOICE_NUMBER = l.INVOICE_NUMBER
       WHERE l.LEAKAGE_AMOUNT > 1000
       ORDER BY l.LEAKAGE_AMOUNT DESC
     `,
-    description: "High-risk transactions with significant leakage amounts (>$1000)",
+    description:
+      "High-risk transactions with significant leakage amounts (>$1000)",
     category: "Risk Management",
   },
 
@@ -144,14 +148,15 @@ export const PREDEFINED_QUERIES = {
           THEN ROUND((SUM(l.LEAKAGE_AMOUNT) / SUM(l.TOTAL_LINE_AMOUNT_INC_GST)) * 100, 2)
           ELSE 0 
         END as Leakage_Rate_Percent
-      FROM goods_lineitems_ps l
-      INNER JOIN goods_invoicefields i ON l.INVOICE_NUMBER = i.INVOICE_NUMBER
+      FROM goods_lineitems_temp l
+      INNER JOIN goods_invoicefields_temp i ON l.INVOICE_NUMBER = i.INVOICE_NUMBER
       WHERE l.UNSPSC_SEGMENT IS NOT NULL AND l.UNSPSC_SEGMENT != ''
       GROUP BY l.UNSPSC_SEGMENT, l.UNSPSC_FAMILY
       HAVING SUM(l.TOTAL_LINE_AMOUNT_INC_GST) > 10000
       ORDER BY Total_Spend DESC
     `,
-    description: "Spend analysis by UNSPSC product categories with supplier diversity",
+    description:
+      "Spend analysis by UNSPSC product categories with supplier diversity",
     category: "Category Management",
   },
 
@@ -170,8 +175,8 @@ export const PREDEFINED_QUERIES = {
           THEN ROUND((SUM(l.LEAKAGE_AMOUNT) / SUM(TRY_CAST(i.INVOICE_TOTAL AS DECIMAL(18,2)))) * 100, 2)
           ELSE 0 
         END as Leakage_Rate_Percent
-      FROM goods_invoicefields i
-      LEFT JOIN goods_lineitems_ps l ON i.INVOICE_NUMBER = l.INVOICE_NUMBER
+      FROM goods_invoicefields_temp i
+      LEFT JOIN goods_lineitems_temp l ON i.INVOICE_NUMBER = l.INVOICE_NUMBER
       WHERE TRY_CAST(i.INVOICE_DATE AS DATE) IS NOT NULL
       GROUP BY YEAR(TRY_CAST(i.INVOICE_DATE AS DATE)), MONTH(TRY_CAST(i.INVOICE_DATE AS DATE)), DATENAME(MONTH, TRY_CAST(i.INVOICE_DATE AS DATE))
       ORDER BY Year DESC, Month DESC
@@ -190,8 +195,8 @@ export const PREDEFINED_QUERIES = {
         i.INVOICE_DATE,
         COUNT(*) as Duplicate_Count,
         SUM(l.TOTAL_LINE_AMOUNT_INC_GST) as Total_Line_Amount
-      FROM goods_invoicefields i
-      INNER JOIN goods_lineitems_ps l ON i.INVOICE_NUMBER = l.INVOICE_NUMBER
+      FROM goods_invoicefields_temp i
+      INNER JOIN goods_lineitems_temp l ON i.INVOICE_NUMBER = l.INVOICE_NUMBER
       WHERE l.IS_LINE_ITEMS_DOUBLED = 1
       GROUP BY i.SUPPLIER_NAME, i.INVOICE_NUMBER, i.PURCHASE_ORDER_NUMBER, i.INVOICE_TOTAL, i.INVOICE_DATE
       HAVING COUNT(*) > 1
@@ -217,8 +222,8 @@ export const PREDEFINED_QUERIES = {
           ELSE 0 
         END as Price_Variance_Percent,
         SUM(l.TOTAL_LINE_AMOUNT_INC_GST) as Total_Spend
-      FROM goods_lineitems_ps l
-      INNER JOIN goods_invoicefields i ON l.INVOICE_NUMBER = i.INVOICE_NUMBER
+      FROM goods_lineitems_temp l
+      INNER JOIN goods_invoicefields_temp i ON l.INVOICE_NUMBER = i.INVOICE_NUMBER
       WHERE l.UNIT_PRICE IS NOT NULL 
         AND l.PRODUCT_DESCRIPTION IS NOT NULL 
         AND l.PRODUCT_DESCRIPTION != ''
@@ -226,10 +231,11 @@ export const PREDEFINED_QUERIES = {
       HAVING COUNT(*) > 5 AND MAX(l.UNIT_PRICE) > MIN(l.UNIT_PRICE)
       ORDER BY Price_Variance_Percent DESC
     `,
-    description: "Price variance analysis showing products with significant price differences",
+    description:
+      "Price variance analysis showing products with significant price differences",
     category: "Price Management",
   },
-}
+};
 
 export const QUERY_SUGGESTIONS = [
   {
@@ -244,7 +250,8 @@ export const QUERY_SUGGESTIONS = [
   },
   {
     title: "📊 Catalogue vs Non-Catalogue Leakage",
-    description: "Compare leakage rates between catalogue and off-catalogue purchases",
+    description:
+      "Compare leakage rates between catalogue and off-catalogue purchases",
     keywords: ["catalogue", "non-catalogue", "leakage", "procurement"],
   },
   {
@@ -274,38 +281,41 @@ export const QUERY_SUGGESTIONS = [
   },
   {
     title: "💲 Price Variance Analysis",
-    description: "Find products with significant price differences across suppliers",
+    description:
+      "Find products with significant price differences across suppliers",
     keywords: ["price", "variance", "difference", "cost"],
   },
-]
+];
 
 export function findPredefinedQuery(userInput) {
-  const input = userInput.toLowerCase()
+  const input = userInput.toLowerCase();
 
   // Direct matches
   for (const [key, query] of Object.entries(PREDEFINED_QUERIES)) {
     if (input.includes(key.toLowerCase())) {
-      return query
+      return query;
     }
   }
 
   // Keyword-based matching
   for (const suggestion of QUERY_SUGGESTIONS) {
-    const matchCount = suggestion.keywords.filter((keyword) => input.includes(keyword.toLowerCase())).length
+    const matchCount = suggestion.keywords.filter((keyword) =>
+      input.includes(keyword.toLowerCase())
+    ).length;
 
     if (matchCount >= 2) {
       const queryKey = Object.keys(PREDEFINED_QUERIES).find((key) =>
-        suggestion.title.toLowerCase().includes(key.split(" ")[0]),
-      )
+        suggestion.title.toLowerCase().includes(key.split(" ")[0])
+      );
       if (queryKey) {
-        return PREDEFINED_QUERIES[queryKey]
+        return PREDEFINED_QUERIES[queryKey];
       }
     }
   }
 
-  return null
+  return null;
 }
 
 export function getQuerySuggestions() {
-  return QUERY_SUGGESTIONS
+  return QUERY_SUGGESTIONS;
 }
