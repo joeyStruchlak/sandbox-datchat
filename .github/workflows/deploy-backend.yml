@@ -20,6 +20,9 @@ jobs:
         with:
           node-version: '22'
       
+      - name: Install root dependencies
+        run: npm ci
+      
       - name: Install backend dependencies
         working-directory: ./backend
         run: npm ci
@@ -29,4 +32,4 @@ jobs:
         with:
           app-name: datchat-api
           publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE_BACKEND }}
-          package: backend
+          package: .
