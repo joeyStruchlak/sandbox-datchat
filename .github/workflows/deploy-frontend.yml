@@ -25,12 +25,34 @@ jobs:
         env:
           NEXT_PUBLIC_API_URL: ${{ secrets.NEXT_PUBLIC_API_URL }}
       
+      - name: Verify .next folder exists
+        run: |
+          if [ -d ".next" ]; then
+            echo ".next folder found"
+            ls -la .next | head -20
+          else
+            echo "ERROR: .next folder not found!"
+            exit 1
+          fi
+      
       - name: Remove dev dependencies
         run: npm install --omit=dev
+      
+      - name: Create deployment package
+        run: |
+          mkdir -p deploy-package
+          cp -r .next deploy-package/
+          cp -r public deploy-package/ 2>/dev/null || true
+          cp package.json deploy-package/
+          cp package-lock.json deploy-package/
+          cp next.config.mjs deploy-package/ 2>/dev/null || true
+          cd deploy-package
+          npm install --omit=dev
+          cd ..
       
       - name: Deploy to Azure
         uses: azure/webapps-deploy@v2
         with:
           app-name: datchat-ui
           publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE_FRONTEND }}
-          package: .
+          package: deploy-package
