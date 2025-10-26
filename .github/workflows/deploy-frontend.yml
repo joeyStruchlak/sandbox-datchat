@@ -25,7 +25,7 @@ jobs:
         env:
           NEXT_PUBLIC_API_URL: ${{ secrets.NEXT_PUBLIC_API_URL }}
       
-      - name: Install production only
+      - name: Remove dev dependencies
         run: npm install --omit=dev
       
       - name: Deploy to Azure
