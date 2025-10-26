@@ -20,38 +20,85 @@ jobs:
       - name: Install dependencies
         run: npm ci
       
+      - name: Show environment
+        run: |
+          echo "Node version:"
+          node --version
+          echo "npm version:"
+          npm --version
+          echo "Working directory:"
+          pwd
+          echo "Files in root:"
+          ls -la
+      
       - name: Build Next.js
         run: npm run build
         env:
           NEXT_PUBLIC_API_URL: ${{ secrets.NEXT_PUBLIC_API_URL }}
       
-      - name: Verify .next folder exists
+      - name: Check build output
         run: |
+          echo "=== Checking build output ==="
           if [ -d ".next" ]; then
-            echo ".next folder found"
+            echo "✅ .next folder found!"
             du -sh .next
+            ls -la .next | head -20
           else
-            echo "ERROR: .next folder not found!"
+            echo "❌ ERROR: .next folder NOT found!"
+            echo "Current directory contents:"
+            ls -la
             exit 1
           fi
       
       - name: Clean up dev dependencies
         run: npm prune --omit=dev
       
+      - name: Show node_modules size
+        run: |
+          echo "node_modules size before packaging:"
+          du -sh node_modules/
+      
       - name: Create deployment package
         run: |
           mkdir -p deploy-package
-          cp -r .next deploy-package/
-          cp -r public deploy-package/ 2>/dev/null || true
-          cp -r node_modules deploy-package/ 2>/dev/null || true
+          echo "Copying .next folder..."
+          cp -r .next deploy-package/ || { echo "Failed to copy .next"; exit 1; }
+          echo "Copying public folder..."
+          cp -r public deploy-package/ 2>/dev/null || echo "No public folder"
+          echo "Copying node_modules..."
+          cp -r node_modules deploy-package/ 2>/dev/null || echo "No node_modules"
+          echo "Copying config files..."
           cp package.json deploy-package/
           cp package-lock.json deploy-package/
-          cp next.config.mjs deploy-package/ 2>/dev/null || true
+          cp next.config.mjs deploy-package/ 2>/dev/null || echo "No next.config.mjs"
+          echo "✅ Deployment package created"
       
       - name: Check deployment package size
-        run: du -sh deploy-package/
+        run: |
+          echo "Total deployment package size:"
+          du -sh deploy-package/
+          echo "Breakdown:"
+          du -sh deploy-package/*
       
-      - name: Deploy to Azure
+      - name: Wait for previous deployments to complete
+        run: sleep 30
+      
+      - name: Deploy to Azure (with retry)
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: datchat-ui
+          publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE_FRONTEND }}
+          package: deploy-package
+        continue-on-error: true
+      
+      - name: Retry deploy if failed
+        if: failure()
+        run: |
+          echo "First deployment attempt failed, waiting 60s and retrying..."
+          sleep 60
+      
+      - name: Deploy to Azure (retry attempt)
+        if: failure()
         uses: azure/webapps-deploy@v2
         with:
           app-name: datchat-ui
