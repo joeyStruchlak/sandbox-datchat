@@ -1,5 +1,4 @@
 name: Deploy Frontend to Azure
-
 on:
   push:
     branches: [main, master, develop]
@@ -16,9 +15,10 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '22'
+          cache: 'npm'
       
       - name: Install dependencies
-        run: npm install
+        run: npm ci
       
       - name: Build Next.js
         run: npm run build
@@ -29,26 +29,27 @@ jobs:
         run: |
           if [ -d ".next" ]; then
             echo ".next folder found"
-            ls -la .next | head -20
+            du -sh .next
           else
             echo "ERROR: .next folder not found!"
             exit 1
           fi
       
-      - name: Remove dev dependencies
-        run: npm install --omit=dev
+      - name: Clean up dev dependencies
+        run: npm prune --omit=dev
       
       - name: Create deployment package
         run: |
           mkdir -p deploy-package
           cp -r .next deploy-package/
           cp -r public deploy-package/ 2>/dev/null || true
+          cp -r node_modules deploy-package/ 2>/dev/null || true
           cp package.json deploy-package/
           cp package-lock.json deploy-package/
           cp next.config.mjs deploy-package/ 2>/dev/null || true
-          cd deploy-package
-          npm install --omit=dev
-          cd ..
+      
+      - name: Check deployment package size
+        run: du -sh deploy-package/
       
       - name: Deploy to Azure
         uses: azure/webapps-deploy@v2
