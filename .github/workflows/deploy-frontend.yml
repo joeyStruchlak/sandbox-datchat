@@ -17,7 +17,7 @@ jobs:
         with:
           node-version: '22'
       
-      - name: Install dependencies
+      - name: Install all dependencies
         run: npm install
       
       - name: Build Next.js
@@ -25,20 +25,13 @@ jobs:
         env:
           NEXT_PUBLIC_API_URL: ${{ secrets.NEXT_PUBLIC_API_URL }}
       
-      - name: Create deployment package
-        run: |
-          mkdir -p deploy
-          cp -r .next deploy/
-          cp -r public deploy/ || true
-          cp package.json deploy/
-          cp package-lock.json deploy/
-          cd deploy
-          npm install --omit=dev
-          cd ..
+      - name: Install production dependencies only
+        run: npm install --omit=dev
       
       - name: Deploy to Azure
         uses: azure/webapps-deploy@v2
         with:
           app-name: datchat-ui
           publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE_FRONTEND }}
-          package: deploy
+          package: .
+          clean: true
