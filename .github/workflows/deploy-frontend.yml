@@ -3,11 +3,6 @@ name: Deploy Frontend to Azure
 on:
   push:
     branches: [main, master, develop]
-    paths:
-      - 'app/**'
-      - 'components/**'
-      - 'package.json'
-      - '.github/workflows/deploy-frontend.yml'
 
 jobs:
   build-and-deploy:
@@ -29,6 +24,9 @@ jobs:
         run: npm run build
         env:
           NEXT_PUBLIC_API_URL: ${{ secrets.NEXT_PUBLIC_API_URL }}
+      
+      - name: Remove dev dependencies before deploy
+        run: npm install --production
       
       - name: Deploy to Azure
         uses: azure/webapps-deploy@v2
