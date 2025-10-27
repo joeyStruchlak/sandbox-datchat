@@ -744,386 +744,579 @@ export default function ChatPage() {
           </div>
         </div>
       )}
-      <main className="flex-1 overflow-y-auto">
-        <div className="max-w-7xl mx-auto px-6 py-8">
-          {messages.length === 0 ? (
-            <div className="flex flex-col items-center justify-center min-h-[calc(100vh-280px)]">
-              <div className="text-center mb-12">
-                <div className="mb-6 relative inline-block">
+      <main className="flex-1 overflow-hidden flex flex-col">
+        <div className="flex-1 overflow-y-auto px-6 py-4">
+          <div className="max-w-7xl mx-auto">
+            {messages.length === 0 ? (
+              <div className="flex flex-col items-center justify-center min-h-[calc(100vh-280px)]">
+                <div className="text-center mb-12">
+                  <div className="mb-6 relative inline-block">
+                    <div
+                      className="absolute inset-0 rounded-full blur-2xl animate-pulse"
+                      style={{
+                        background:
+                          "linear-gradient(135deg, rgba(90, 108, 95, 0.15) 0%, rgba(101, 123, 106, 0.15) 50%, rgba(142, 178, 140, 0.15) 100%)",
+                      }}
+                    ></div>
+
+                    <img
+                      src="/cwyd.png"
+                      alt="Spend Bot"
+                      className="w-78 h-78 relative z-10"
+                    />
+                  </div>
+
+                  <h2
+                    className="text-5xl font-bold mb-4 leading-tight"
+                    style={{ color: "#2d4f3e" }}
+                  >
+                    Analytix SpendBot{" "}
+                    <span
+                      className="text-3xl ml-2"
+                      style={{ color: "#a8b5ad" }}
+                    >
+                      (Preview)
+                    </span>
+                  </h2>
+                  <p
+                    className="text-lg max-w-2xl mx-auto leading-relaxed"
+                    style={{ color: "#6b7c70" }}
+                  >
+                    Your enterprise-grade AI assistant for intelligent spend
+                    analysis, procurement insights, and data-driven decision
+                    making.
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-4xl mb-12">
                   <div
-                    className="absolute inset-0 rounded-full blur-2xl animate-pulse"
+                    className="rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1"
                     style={{
-                      background:
-                        "linear-gradient(135deg, rgba(90, 108, 95, 0.15) 0%, rgba(101, 123, 106, 0.15) 50%, rgba(142, 178, 140, 0.15) 100%)",
+                      backgroundColor: "#ffffff",
+                      border: "1px solid #e8e5e0",
                     }}
-                  ></div>
-
-                  <img
-                    src="/cwyd.png"
-                    alt="Spend Bot"
-                    className="w-78 h-78 relative z-10"
-                  />
-                </div>
-
-                <h2
-                  className="text-5xl font-bold mb-4 leading-tight"
-                  style={{ color: "#2d4f3e" }}
-                >
-                  Analytix SpendBot{" "}
-                  <span className="text-3xl ml-2" style={{ color: "#a8b5ad" }}>
-                    (Preview)
-                  </span>
-                </h2>
-                <p
-                  className="text-lg max-w-2xl mx-auto leading-relaxed"
-                  style={{ color: "#6b7c70" }}
-                >
-                  Your enterprise-grade AI assistant for intelligent spend
-                  analysis, procurement insights, and data-driven decision
-                  making.
-                </p>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-4xl mb-12">
-                <div
-                  className="rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1"
-                  style={{
-                    backgroundColor: "#ffffff",
-                    border: "1px solid #e8e5e0",
-                  }}
-                >
-                  <div className="flex items-center justify-between mb-4">
-                    <div
-                      className="w-12 h-12 rounded-xl flex items-center justify-center"
-                      style={{ backgroundColor: "#e8f0ff" }}
-                    >
-                      <TrendingUp
-                        className="w-6 h-6"
-                        style={{ color: "#3b82f6" }}
-                      />
-                    </div>
-                    <span
-                      className="text-2xl font-bold"
-                      style={{ color: "#1f2937" }}
-                    >
-                      $1.21M
-                    </span>
-                  </div>
-                  <h3
-                    className="text-sm font-semibold mb-1"
-                    style={{ color: "#1f2937" }}
                   >
-                    Total Spend
-                  </h3>
-                  <p className="text-xs" style={{ color: "#6b7280" }}>
-                    Fiscal Year 2025
-                  </p>
-                  <div className="mt-4 flex items-end gap-1 h-12">
-                    <div
-                      className="w-full rounded-t"
-                      style={{
-                        height: "45%",
-                        backgroundColor: "#bfdbfe",
-                      }}
-                    ></div>
-                    <div
-                      className="w-full rounded-t"
-                      style={{
-                        height: "60%",
-                        backgroundColor: "#93c5fd",
-                      }}
-                    ></div>
-                    <div
-                      className="w-full rounded-t"
-                      style={{
-                        height: "75%",
-                        backgroundColor: "#60a5fa",
-                      }}
-                    ></div>
-                    <div
-                      className="w-full rounded-t"
-                      style={{
-                        height: "90%",
-                        backgroundColor: "#3b82f6",
-                      }}
-                    ></div>
-                    <div
-                      className="w-full rounded-t"
-                      style={{
-                        height: "100%",
-                        backgroundColor: "#2563eb",
-                      }}
-                    ></div>
-                  </div>
-                </div>
-
-                <div
-                  className="rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1"
-                  style={{
-                    backgroundColor: "#ffffff",
-                    border: "1px solid #e8e5e0",
-                  }}
-                >
-                  <div className="flex items-center justify-between mb-4">
-                    <div
-                      className="w-12 h-12 rounded-xl flex items-center justify-center"
-                      style={{ backgroundColor: "#d1fae5" }}
-                    >
-                      <FileText
-                        className="w-6 h-6"
-                        style={{ color: "#10b981" }}
-                      />
-                    </div>
-                    <span
-                      className="text-2xl font-bold"
-                      style={{ color: "#1f2937" }}
-                    >
-                      10
-                    </span>
-                  </div>
-                  <h3
-                    className="text-sm font-semibold mb-1"
-                    style={{ color: "#1f2937" }}
-                  >
-                    Active Contracts
-                  </h3>
-                  <p className="text-xs" style={{ color: "#6b7280" }}>
-                    Across all departments
-                  </p>
-                  <div className="mt-4 flex items-center gap-2">
-                    <div
-                      className="flex-1 h-2 rounded-full overflow-hidden"
-                      style={{ backgroundColor: "#f3f4f6" }}
-                    >
+                    <div className="flex items-center justify-between mb-4">
                       <div
-                        className="h-full rounded-full"
+                        className="w-12 h-12 rounded-xl flex items-center justify-center"
+                        style={{ backgroundColor: "#e8f0ff" }}
+                      >
+                        <TrendingUp
+                          className="w-6 h-6"
+                          style={{ color: "#3b82f6" }}
+                        />
+                      </div>
+                      <span
+                        className="text-2xl font-bold"
+                        style={{ color: "#1f2937" }}
+                      >
+                        $1.21M
+                      </span>
+                    </div>
+                    <h3
+                      className="text-sm font-semibold mb-1"
+                      style={{ color: "#1f2937" }}
+                    >
+                      Total Spend
+                    </h3>
+                    <p className="text-xs" style={{ color: "#6b7280" }}>
+                      Fiscal Year 2025
+                    </p>
+                    <div className="mt-4 flex items-end gap-1 h-12">
+                      <div
+                        className="w-full rounded-t"
                         style={{
-                          width: "77.98%",
-                          background:
-                            "linear-gradient(to right, #10b981, #34d399)",
+                          height: "45%",
+                          backgroundColor: "#bfdbfe",
+                        }}
+                      ></div>
+                      <div
+                        className="w-full rounded-t"
+                        style={{
+                          height: "60%",
+                          backgroundColor: "#93c5fd",
+                        }}
+                      ></div>
+                      <div
+                        className="w-full rounded-t"
+                        style={{
+                          height: "75%",
+                          backgroundColor: "#60a5fa",
+                        }}
+                      ></div>
+                      <div
+                        className="w-full rounded-t"
+                        style={{
+                          height: "90%",
+                          backgroundColor: "#3b82f6",
+                        }}
+                      ></div>
+                      <div
+                        className="w-full rounded-t"
+                        style={{
+                          height: "100%",
+                          backgroundColor: "#2563eb",
                         }}
                       ></div>
                     </div>
-                    <span
-                      className="text-xs font-semibold"
-                      style={{ color: "#10b981" }}
-                    >
-                      78%
-                    </span>
                   </div>
-                </div>
 
-                <div
-                  className="rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1"
-                  style={{
-                    backgroundColor: "#ffffff",
-                    border: "1px solid #e8e5e0",
-                  }}
-                >
-                  <div className="flex items-center justify-between mb-4">
-                    <div
-                      className="w-12 h-12 rounded-xl flex items-center justify-center"
-                      style={{ backgroundColor: "#fae8ff" }}
-                    >
-                      <BarChart3
-                        className="w-6 h-6"
-                        style={{ color: "#a855f7" }}
-                      />
+                  <div
+                    className="rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1"
+                    style={{
+                      backgroundColor: "#ffffff",
+                      border: "1px solid #e8e5e0",
+                    }}
+                  >
+                    <div className="flex items-center justify-between mb-4">
+                      <div
+                        className="w-12 h-12 rounded-xl flex items-center justify-center"
+                        style={{ backgroundColor: "#d1fae5" }}
+                      >
+                        <FileText
+                          className="w-6 h-6"
+                          style={{ color: "#10b981" }}
+                        />
+                      </div>
+                      <span
+                        className="text-2xl font-bold"
+                        style={{ color: "#1f2937" }}
+                      >
+                        10
+                      </span>
                     </div>
-                    <span
-                      className="text-2xl font-bold"
+                    <h3
+                      className="text-sm font-semibold mb-1"
                       style={{ color: "#1f2937" }}
                     >
-                      89
-                    </span>
+                      Active Contracts
+                    </h3>
+                    <p className="text-xs" style={{ color: "#6b7280" }}>
+                      Across all departments
+                    </p>
+                    <div className="mt-4 flex items-center gap-2">
+                      <div
+                        className="flex-1 h-2 rounded-full overflow-hidden"
+                        style={{ backgroundColor: "#f3f4f6" }}
+                      >
+                        <div
+                          className="h-full rounded-full"
+                          style={{
+                            width: "77.98%",
+                            background:
+                              "linear-gradient(to right, #10b981, #34d399)",
+                          }}
+                        ></div>
+                      </div>
+                      <span
+                        className="text-xs font-semibold"
+                        style={{ color: "#10b981" }}
+                      >
+                        78%
+                      </span>
+                    </div>
                   </div>
-                  <h3
-                    className="text-sm font-semibold mb-1"
-                    style={{ color: "#1f2937" }}
+
+                  <div
+                    className="rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1"
+                    style={{
+                      backgroundColor: "#ffffff",
+                      border: "1px solid #e8e5e0",
+                    }}
                   >
-                    Tenders Released
-                  </h3>
-                  <p className="text-xs" style={{ color: "#6b7280" }}>
-                    This quarter
+                    <div className="flex items-center justify-between mb-4">
+                      <div
+                        className="w-12 h-12 rounded-xl flex items-center justify-center"
+                        style={{ backgroundColor: "#fae8ff" }}
+                      >
+                        <BarChart3
+                          className="w-6 h-6"
+                          style={{ color: "#a855f7" }}
+                        />
+                      </div>
+                      <span
+                        className="text-2xl font-bold"
+                        style={{ color: "#1f2937" }}
+                      >
+                        89
+                      </span>
+                    </div>
+                    <h3
+                      className="text-sm font-semibold mb-1"
+                      style={{ color: "#1f2937" }}
+                    >
+                      Tenders Released
+                    </h3>
+                    <p className="text-xs" style={{ color: "#6b7280" }}>
+                      This quarter
+                    </p>
+                    <div className="mt-4 grid grid-cols-5 gap-1 h-12">
+                      <div
+                        className="rounded"
+                        style={{
+                          height: "40%",
+                          backgroundColor: "#f3e8ff",
+                        }}
+                      ></div>
+                      <div
+                        className="rounded"
+                        style={{
+                          height: "65%",
+                          backgroundColor: "#e9d5ff",
+                        }}
+                      ></div>
+                      <div
+                        className="rounded"
+                        style={{
+                          height: "50%",
+                          backgroundColor: "#d8b4fe",
+                        }}
+                      ></div>
+                      <div
+                        className="rounded"
+                        style={{
+                          height: "85%",
+                          backgroundColor: "#c084fc",
+                        }}
+                      ></div>
+                      <div
+                        className="rounded"
+                        style={{
+                          height: "100%",
+                          backgroundColor: "#a855f7",
+                        }}
+                      ></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="w-full max-w-3xl">
+                  <p
+                    className="text-sm font-semibold mb-4 text-center"
+                    style={{ color: "#4b5563" }}
+                  >
+                    Start by asking a question:
                   </p>
-                  <div className="mt-4 grid grid-cols-5 gap-1 h-12">
-                    <div
-                      className="rounded"
+                  <div className="space-y-3">
+                    <button
+                      onClick={() =>
+                        handleExampleClick(
+                          "How many IPP submissions were made FY25?"
+                        )
+                      }
+                      className="w-full text-left p-4 rounded-xl hover:shadow-md transition-all duration-200 group"
                       style={{
-                        height: "40%",
-                        backgroundColor: "#f3e8ff",
+                        backgroundColor: "#ffffff",
+                        border: "1px solid #e8e5e0",
                       }}
-                    ></div>
-                    <div
-                      className="rounded"
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.borderColor = "#5a8068";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.borderColor = "#e8e5e0";
+                      }}
+                    >
+                      <div className="flex items-start gap-3">
+                        <MessageCircle
+                          className="w-5 h-5 mt-0.5 flex-shrink-0"
+                          style={{ color: "#5a8068" }}
+                        />
+                        <div>
+                          <p
+                            className="font-medium"
+                            style={{ color: "#1f2937" }}
+                          >
+                            How many IPP submissions were made FY25?
+                          </p>
+                          <p
+                            className="text-sm mt-1"
+                            style={{ color: "#6b7280" }}
+                          >
+                            Get insights on procurement submissions
+                          </p>
+                        </div>
+                      </div>
+                    </button>
+
+                    <button
+                      onClick={() =>
+                        handleExampleClick(
+                          "What's the total spend on non-catalogue items?"
+                        )
+                      }
+                      className="w-full text-left p-4 rounded-xl hover:shadow-md transition-all duration-200 group"
                       style={{
-                        height: "65%",
-                        backgroundColor: "#e9d5ff",
+                        backgroundColor: "#ffffff",
+                        border: "1px solid #e8e5e0",
                       }}
-                    ></div>
-                    <div
-                      className="rounded"
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.borderColor = "#5a8068";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.borderColor = "#e8e5e0";
+                      }}
+                    >
+                      <div className="flex items-start gap-3">
+                        <MessageCircle
+                          className="w-5 h-5 mt-0.5 flex-shrink-0"
+                          style={{ color: "#5a8068" }}
+                        />
+                        <div>
+                          <p
+                            className="font-medium"
+                            style={{ color: "#1f2937" }}
+                          >
+                            What's the total spend on non-catalogue items?
+                          </p>
+                          <p
+                            className="text-sm mt-1"
+                            style={{ color: "#6b7280" }}
+                          >
+                            Analyze spending patterns
+                          </p>
+                        </div>
+                      </div>
+                    </button>
+
+                    <button
+                      onClick={() => setShowSuggestionsModal(true)}
+                      className="w-full text-left p-5 rounded-2xl hover:shadow-xl transition-all duration-200 group border border-[#d1d5db]"
                       style={{
-                        height: "50%",
-                        backgroundColor: "#d8b4fe",
+                        backgroundColor: "#f0f4f8", // subtle blue-gray
+                        position: "relative",
                       }}
-                    ></div>
-                    <div
-                      className="rounded"
-                      style={{
-                        height: "85%",
-                        backgroundColor: "#c084fc",
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.borderColor = "#2563eb"; // corporate blue
+                        e.currentTarget.style.backgroundColor = "#e7effc"; // lighter blue
                       }}
-                    ></div>
-                    <div
-                      className="rounded"
-                      style={{
-                        height: "100%",
-                        backgroundColor: "#a855f7",
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.borderColor = "#d1d5db";
+                        e.currentTarget.style.backgroundColor = "#f0f4f8";
                       }}
-                    ></div>
+                    >
+                      {/* Blue HELP badge */}
+                      <div className="absolute top-2 right-3 bg-[#2563eb] text-white text-[10px] px-2 py-0.5 rounded-full font-medium shadow-sm">
+                        HELP
+                      </div>
+
+                      <div className="flex items-start gap-4">
+                        <Lightbulb
+                          className="w-8 h-8 mt-0.5 flex-shrink-0 transition-transform duration-200 group-hover:scale-110"
+                          style={{ color: "#2563eb" }} // blue icon
+                        />
+                        <div>
+                          <p
+                            className="font-semibold text-lg"
+                            style={{ color: "#1e293b" }}
+                          >
+                            What should I ask?
+                          </p>
+                          <p
+                            className="text-sm mt-1"
+                            style={{ color: "#475569" }}
+                          >
+                            Get tips tailored to your role and what you want to
+                            achieve.
+                          </p>
+                        </div>
+                      </div>
+                    </button>
                   </div>
                 </div>
               </div>
-
-              <div className="w-full max-w-3xl">
-                <p
-                  className="text-sm font-semibold mb-4 text-center"
-                  style={{ color: "#4b5563" }}
-                >
-                  Start by asking a question:
-                </p>
-                <div className="space-y-3">
-                  <button
-                    onClick={() =>
-                      handleExampleClick(
-                        "How many IPP submissions were made FY25?"
-                      )
-                    }
-                    className="w-full text-left p-4 rounded-xl hover:shadow-md transition-all duration-200 group"
-                    style={{
-                      backgroundColor: "#ffffff",
-                      border: "1px solid #e8e5e0",
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.borderColor = "#5a8068";
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.borderColor = "#e8e5e0";
-                    }}
+            ) : (
+              <div className="space-y-6 pb-24">
+                {messages.map((msg, i) => (
+                  <div
+                    key={i}
+                    className={`flex gap-3 ${
+                      msg.role === "user" ? "justify-end" : "justify-start"
+                    }`}
                   >
-                    <div className="flex items-start gap-3">
-                      <MessageCircle
-                        className="w-5 h-5 mt-0.5 flex-shrink-0"
-                        style={{ color: "#5a8068" }}
-                      />
-                      <div>
-                        <p className="font-medium" style={{ color: "#1f2937" }}>
-                          How many IPP submissions were made FY25?
-                        </p>
-                        <p
-                          className="text-sm mt-1"
-                          style={{ color: "#6b7280" }}
+                    {msg.role === "assistant" && (
+                      <div className="flex flex-col items-center gap-1 flex-shrink-0">
+                        <div
+                          className="w-9 h-9 rounded-lg flex items-center justify-center"
+                          style={{
+                            backgroundColor: "transparent",
+                            padding: "2px",
+                          }}
                         >
-                          Get insights on procurement submissions
-                        </p>
+                          <img
+                            src="/anaBot.png"
+                            alt="CWYD"
+                            className="w-full h-full"
+                            style={{
+                              objectFit: "contain",
+                              mixBlendMode: "multiply",
+                            }}
+                          />
+                        </div>
+                        <span
+                          className="text-xs font-medium whitespace-nowrap"
+                          style={{ color: "#4a5d50" }}
+                        >
+                          SpendBot
+                        </span>
+                      </div>
+                    )}
+
+                    <div
+                      className={`rounded-xl px-4 py-1 ${
+                        msg.role === "user"
+                          ? "shadow-md max-w-[70%]"
+                          : "shadow-sm max-w-full"
+                      }`}
+                      style={{
+                        background:
+                          msg.role === "user"
+                            ? "linear-gradient(135deg, #5a8068, #4a6f58)"
+                            : "#ffffff",
+                        color: msg.role === "user" ? "#ffffff" : "#1f2937",
+                        border:
+                          msg.role === "user" ? "none" : "1px solid #e5e5e5",
+                      }}
+                    >
+                      <div className="prose prose-sm max-w-none leading-relaxed">
+                        <div>
+                          <div
+                            style={{
+                              maxHeight: "none",
+                              overflow: "visible",
+                            }}
+                          >
+                            <ReactMarkdown
+                              remarkPlugins={[remarkGfm]}
+                              components={{
+                                code({
+                                  node,
+                                  inline,
+                                  className,
+                                  children,
+                                  ...props
+                                }: any) {
+                                  const match = /language-(\w+)/.exec(
+                                    className || ""
+                                  );
+                                  return !inline && match ? (
+                                    <div
+                                      className="my-4 rounded-xl overflow-hidden"
+                                      style={{
+                                        border: "1px solid #e8e5e0",
+                                        backgroundColor: "#f9fafb",
+                                      }}
+                                    >
+                                      <div
+                                        className="flex items-center justify-between px-4 py-2.5 text-xs font-medium"
+                                        style={{
+                                          color: "#6b7280",
+                                          borderBottom: "1px solid #e8e5e0",
+                                          backgroundColor: "#ffffff",
+                                        }}
+                                      >
+                                        <span>{match[1]}</span>
+                                      </div>
+                                      <pre className="p-4 overflow-x-auto">
+                                        <code
+                                          className="text-sm font-mono"
+                                          style={{ color: "#374151" }}
+                                        >
+                                          {String(children).replace(/\n$/, "")}
+                                        </code>
+                                      </pre>
+                                    </div>
+                                  ) : (
+                                    <code
+                                      className="px-2 py-1 rounded-md text-sm font-mono"
+                                      style={{
+                                        backgroundColor:
+                                          msg.role === "user"
+                                            ? "rgba(90, 128, 104, 0.15)"
+                                            : "#f3f4f6",
+                                        color:
+                                          msg.role === "user"
+                                            ? "#ffffff"
+                                            : "#374151",
+                                        border:
+                                          msg.role === "user"
+                                            ? "1px solid rgba(255, 255, 255, 0.3)"
+                                            : "1px solid #e5e7eb",
+                                      }}
+                                      {...props}
+                                    >
+                                      {children}
+                                    </code>
+                                  );
+                                },
+
+                                // ✅ Table rendering
+                                table({ children }) {
+                                  return (
+                                    <div className="overflow-auto my-4">
+                                      <table className="w-full text-sm border border-gray-200 text-left">
+                                        {children}
+                                      </table>
+                                    </div>
+                                  );
+                                },
+                                thead({ children }) {
+                                  return (
+                                    <thead className="bg-gray-100 border-b border-gray-200">
+                                      {children}
+                                    </thead>
+                                  );
+                                },
+                                tr({ children }) {
+                                  return (
+                                    <tr className="even:bg-gray-50">
+                                      {children}
+                                    </tr>
+                                  );
+                                },
+                                th({ children }) {
+                                  return (
+                                    <th className="px-4 py-2 font-semibold text-gray-700 border border-gray-200 whitespace-nowrap">
+                                      {children}
+                                    </th>
+                                  );
+                                },
+                                td({ children }) {
+                                  return (
+                                    <td className="px-4 py-2 text-gray-800 border border-gray-200 whitespace-nowrap">
+                                      {children}
+                                    </td>
+                                  );
+                                },
+                              }}
+                            >
+                              {msg.content}
+                            </ReactMarkdown>
+                          </div>
+                        </div>
+
+                        {msg.role === "assistant" &&
+                          msg.chartData &&
+                          msg.chartData.length > 0 && (
+                            <ChartView data={msg.chartData} />
+                          )}
                       </div>
                     </div>
-                  </button>
 
-                  <button
-                    onClick={() =>
-                      handleExampleClick(
-                        "What's the total spend on non-catalogue items?"
-                      )
-                    }
-                    className="w-full text-left p-4 rounded-xl hover:shadow-md transition-all duration-200 group"
-                    style={{
-                      backgroundColor: "#ffffff",
-                      border: "1px solid #e8e5e0",
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.borderColor = "#5a8068";
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.borderColor = "#e8e5e0";
-                    }}
-                  >
-                    <div className="flex items-start gap-3">
-                      <MessageCircle
-                        className="w-5 h-5 mt-0.5 flex-shrink-0"
-                        style={{ color: "#5a8068" }}
-                      />
-                      <div>
-                        <p className="font-medium" style={{ color: "#1f2937" }}>
-                          What's the total spend on non-catalogue items?
-                        </p>
-                        <p
-                          className="text-sm mt-1"
-                          style={{ color: "#6b7280" }}
+                    {msg.role === "user" && (
+                      <div className="flex flex-col items-center gap-1 flex-shrink-0">
+                        <span
+                          className="text-xs font-medium"
+                          style={{ color: "#4a5d50" }}
                         >
-                          Analyze spending patterns
-                        </p>
+                          Aaron
+                        </span>
                       </div>
-                    </div>
-                  </button>
+                    )}
+                  </div>
+                ))}
 
-                  <button
-                    onClick={() => setShowSuggestionsModal(true)}
-                    className="w-full text-left p-5 rounded-2xl hover:shadow-xl transition-all duration-200 group border border-[#d1d5db]"
-                    style={{
-                      backgroundColor: "#f0f4f8", // subtle blue-gray
-                      position: "relative",
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.borderColor = "#2563eb"; // corporate blue
-                      e.currentTarget.style.backgroundColor = "#e7effc"; // lighter blue
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.borderColor = "#d1d5db";
-                      e.currentTarget.style.backgroundColor = "#f0f4f8";
-                    }}
-                  >
-                    {/* Blue HELP badge */}
-                    <div className="absolute top-2 right-3 bg-[#2563eb] text-white text-[10px] px-2 py-0.5 rounded-full font-medium shadow-sm">
-                      HELP
-                    </div>
-
-                    <div className="flex items-start gap-4">
-                      <Lightbulb
-                        className="w-8 h-8 mt-0.5 flex-shrink-0 transition-transform duration-200 group-hover:scale-110"
-                        style={{ color: "#2563eb" }} // blue icon
-                      />
-                      <div>
-                        <p
-                          className="font-semibold text-lg"
-                          style={{ color: "#1e293b" }}
-                        >
-                          What should I ask?
-                        </p>
-                        <p
-                          className="text-sm mt-1"
-                          style={{ color: "#475569" }}
-                        >
-                          Get tips tailored to your role and what you want to
-                          achieve.
-                        </p>
-                      </div>
-                    </div>
-                  </button>
-                </div>
-              </div>
-            </div>
-          ) : (
-            <div className="space-y-6 pb-32">
-              {messages.map((msg, i) => (
-                <div
-                  key={i}
-                  className={`flex gap-3 ${
-                    msg.role === "user" ? "justify-end" : "justify-start"
-                  }`}
-                >
-                  {msg.role === "assistant" && (
+                {isLoading && (
+                  <div className="flex justify-start">
                     <div className="flex flex-col items-center gap-1 flex-shrink-0">
                       <div
                         className="w-9 h-9 rounded-lg flex items-center justify-center"
@@ -1145,237 +1338,55 @@ export default function ChatPage() {
                       <span
                         className="text-xs font-medium whitespace-nowrap"
                         style={{ color: "#4a5d50" }}
-                      >
-                        SpendBot
-                      </span>
+                      ></span>
                     </div>
-                  )}
-
-                  <div
-                    className={`rounded-xl px-4 py-1 ${
-                      msg.role === "user"
-                        ? "shadow-md max-w-[70%]"
-                        : "shadow-sm max-w-full"
-                    }`}
-                    style={{
-                      background:
-                        msg.role === "user"
-                          ? "linear-gradient(135deg, #5a8068, #4a6f58)"
-                          : "#ffffff",
-                      color: msg.role === "user" ? "#ffffff" : "#1f2937",
-                      border:
-                        msg.role === "user" ? "none" : "1px solid #e5e5e5",
-                    }}
-                  >
-                    <div className="prose prose-sm max-w-none leading-relaxed">
-                      <div>
-                        <div
-                          style={{
-                            maxHeight: "none",
-                            overflow: "visible",
-                          }}
-                        >
-                          <ReactMarkdown
-                            remarkPlugins={[remarkGfm]}
-                            components={{
-                              code({
-                                node,
-                                inline,
-                                className,
-                                children,
-                                ...props
-                              }: any) {
-                                const match = /language-(\w+)/.exec(
-                                  className || ""
-                                );
-                                return !inline && match ? (
-                                  <div
-                                    className="my-4 rounded-xl overflow-hidden"
-                                    style={{
-                                      border: "1px solid #e8e5e0",
-                                      backgroundColor: "#f9fafb",
-                                    }}
-                                  >
-                                    <div
-                                      className="flex items-center justify-between px-4 py-2.5 text-xs font-medium"
-                                      style={{
-                                        color: "#6b7280",
-                                        borderBottom: "1px solid #e8e5e0",
-                                        backgroundColor: "#ffffff",
-                                      }}
-                                    >
-                                      <span>{match[1]}</span>
-                                    </div>
-                                    <pre className="p-4 overflow-x-auto">
-                                      <code
-                                        className="text-sm font-mono"
-                                        style={{ color: "#374151" }}
-                                      >
-                                        {String(children).replace(/\n$/, "")}
-                                      </code>
-                                    </pre>
-                                  </div>
-                                ) : (
-                                  <code
-                                    className="px-2 py-1 rounded-md text-sm font-mono"
-                                    style={{
-                                      backgroundColor:
-                                        msg.role === "user"
-                                          ? "rgba(90, 128, 104, 0.15)"
-                                          : "#f3f4f6",
-                                      color:
-                                        msg.role === "user"
-                                          ? "#ffffff"
-                                          : "#374151",
-                                      border:
-                                        msg.role === "user"
-                                          ? "1px solid rgba(255, 255, 255, 0.3)"
-                                          : "1px solid #e5e7eb",
-                                    }}
-                                    {...props}
-                                  >
-                                    {children}
-                                  </code>
-                                );
-                              },
-
-                              // ✅ Table rendering
-                              table({ children }) {
-                                return (
-                                  <div className="overflow-auto my-4">
-                                    <table className="w-full text-sm border border-gray-200 text-left">
-                                      {children}
-                                    </table>
-                                  </div>
-                                );
-                              },
-                              thead({ children }) {
-                                return (
-                                  <thead className="bg-gray-100 border-b border-gray-200">
-                                    {children}
-                                  </thead>
-                                );
-                              },
-                              tr({ children }) {
-                                return (
-                                  <tr className="even:bg-gray-50">
-                                    {children}
-                                  </tr>
-                                );
-                              },
-                              th({ children }) {
-                                return (
-                                  <th className="px-4 py-2 font-semibold text-gray-700 border border-gray-200 whitespace-nowrap">
-                                    {children}
-                                  </th>
-                                );
-                              },
-                              td({ children }) {
-                                return (
-                                  <td className="px-4 py-2 text-gray-800 border border-gray-200 whitespace-nowrap">
-                                    {children}
-                                  </td>
-                                );
-                              },
-                            }}
-                          >
-                            {msg.content}
-                          </ReactMarkdown>
-                        </div>
-                      </div>
-
-                      {msg.role === "assistant" &&
-                        msg.chartData &&
-                        msg.chartData.length > 0 && (
-                          <ChartView data={msg.chartData} />
-                        )}
-                    </div>
-                  </div>
-
-                  {msg.role === "user" && (
-                    <div className="flex flex-col items-center gap-1 flex-shrink-0">
-                      <span
-                        className="text-xs font-medium"
-                        style={{ color: "#4a5d50" }}
-                      >
-                        Aaron
-                      </span>
-                    </div>
-                  )}
-                </div>
-              ))}
-
-              {isLoading && (
-                <div className="flex gap-3 justify-start">
-                  <div className="flex flex-col items-center gap-1 flex-shrink-0">
                     <div
-                      className="w-9 h-9 rounded-lg flex items-center justify-center"
+                      className="rounded-2xl px-5 py-3.5 shadow-sm"
                       style={{
-                        backgroundColor: "transparent",
-                        padding: "2px",
+                        backgroundColor: "#ffffff",
+                        border: "1px solid #e5e5e5",
                       }}
                     >
-                      <img
-                        src="/anaBot.png"
-                        alt="CWYD"
-                        className="w-full h-full"
-                        style={{
-                          objectFit: "contain",
-                          mixBlendMode: "multiply",
-                        }}
-                      />
-                    </div>
-                    <span
-                      className="text-xs font-medium whitespace-nowrap"
-                      style={{ color: "#4a5d50" }}
-                    ></span>
-                  </div>
-                  <div
-                    className="rounded-2xl px-5 py-3.5 shadow-sm"
-                    style={{
-                      backgroundColor: "#ffffff",
-                      border: "1px solid #e5e5e5",
-                    }}
-                  >
-                    <div className="flex items-center gap-2">
-                      <div
-                        className="w-2.5 h-2.5 rounded-full animate-bounce"
-                        style={{
-                          background:
-                            "linear-gradient(135deg, #5a8068, #4a6f58)",
-                          animationDelay: "0ms",
-                        }}
-                      ></div>
+                      <div className="flex items-center gap-2">
+                        <div
+                          className="w-2.5 h-2.5 rounded-full animate-bounce"
+                          style={{
+                            background:
+                              "linear-gradient(135deg, #5a8068, #4a6f58)",
+                            animationDelay: "0ms",
+                          }}
+                        ></div>
 
-                      <div
-                        className="w-2.5 h-2.5 rounded-full animate-bounce"
-                        style={{
-                          background:
-                            "linear-gradient(135deg, #5a8068, #4a6f58)",
-                          animationDelay: "150ms",
-                        }}
-                      ></div>
+                        <div
+                          className="w-2.5 h-2.5 rounded-full animate-bounce"
+                          style={{
+                            background:
+                              "linear-gradient(135deg, #5a8068, #4a6f58)",
+                            animationDelay: "150ms",
+                          }}
+                        ></div>
 
-                      <div
-                        className="w-2.5 h-2.5 rounded-full animate-bounce"
-                        style={{
-                          background:
-                            "linear-gradient(135deg, #5a8068, #4a6f58)",
-                          animationDelay: "300ms",
-                        }}
-                      ></div>
+                        <div
+                          className="w-2.5 h-2.5 rounded-full animate-bounce"
+                          style={{
+                            background:
+                              "linear-gradient(135deg, #5a8068, #4a6f58)",
+                            animationDelay: "300ms",
+                          }}
+                        ></div>
+                      </div>
                     </div>
                   </div>
-                </div>
-              )}
-              <div ref={messagesEndRef} />
-            </div>
-          )}
+                )}
+                <div ref={messagesEndRef} />
+              </div>
+            )}
+          </div>
         </div>
       </main>
 
-      <div
-        className="border-t fixed bottom-0 left-0 right-0 shadow-lg z-40"
+      <footer
+        className="border-t shadow-lg"
         style={{
           backgroundColor: "rgba(255, 255, 255, 0.95)",
           backdropFilter: "blur(10px)",
@@ -1384,12 +1395,11 @@ export default function ChatPage() {
       >
         <div className="max-w-5xl mx-auto px-6 py-5">
           <form
-            suppressHydrationWarning
             onSubmit={(e) => {
               e.preventDefault();
               sendMessage();
             }}
-            className="relative flex items-end gap-3"
+            className="flex items-end gap-3 mb-3"
           >
             <textarea
               ref={inputRef}
@@ -1398,9 +1408,8 @@ export default function ChatPage() {
               onKeyDown={handleKeyDown}
               placeholder="Ask me anything about your spend data..."
               rows={1}
-              className="flex-1 resize-none rounded-xl px-5 py-4 leading-relaxed shadow-sm transition-all scrollbar-hide"
+              className="flex-1 resize-none rounded-xl px-5 py-4 shadow-sm"
               disabled={isLoading}
-              suppressHydrationWarning // optional
               style={{
                 minHeight: "56px",
                 maxHeight: "200px",
@@ -1409,46 +1418,26 @@ export default function ChatPage() {
                 border: "2px solid #e8e5e0",
                 outline: "none",
               }}
-              onFocus={(e) => (e.target.style.borderColor = "#5a8068")}
-              onBlur={(e) => (e.target.style.borderColor = "#e8e5e0")}
             />
             <button
-              suppressHydrationWarning
               type="submit"
               disabled={isLoading || !input.trim()}
-              className="h-14 w-14 rounded-xl shadow-md disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center justify-center flex-shrink-0"
-              aria-label="Send message"
+              className="h-14 w-14 rounded-xl shadow-md flex items-center justify-center flex-shrink-0 transition-all"
               style={{
                 backgroundColor: "#5a8068",
                 color: "#ffffff",
-              }}
-              onMouseEnter={(e) => {
-                if (!isLoading && input.trim()) {
-                  e.currentTarget.style.backgroundColor = "#4a6f58";
-                }
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = "#5a8068";
               }}
             >
               <Send className="w-5 h-5" />
             </button>
           </form>
-          <div className="text-center mt-4">
-            <div
-              className="mt-2 flex justify-center items-center gap-2 text-xs font-medium"
-              style={{ color: "#6b7c70" }}
-            >
-              Powered by
-              <img
-                src="/pernixx.png"
-                alt="Pernix"
-                className="h-4 md:h-5 inline-block"
-              />
-            </div>
+          <div className="text-center">
+            <p className="text-xs font-medium" style={{ color: "#6b7c70" }}>
+              Powered by Pernix Analytics
+            </p>
           </div>
         </div>
-      </div>
+      </footer>
 
       <style>{`
   @keyframes fadeIn {

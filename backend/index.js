@@ -42,7 +42,7 @@
 // app.use("/exports", express.static(path.join(process.cwd(), "exports")));
 
 // // Initialize OpenAI
-// const token = process.env.GITHUB_TOKEN;
+// const token = process.env.OPEN_API_KEY;
 // const client = new OpenAI({
 //   baseURL: "https://models.inference.ai.azure.com",
 //   apiKey: token,
@@ -460,7 +460,7 @@
 //     DB_SERVER: process.env.DB_SERVER ? "✓ Set" : "❌ Missing",
 //     DB_USER: process.env.DB_USER ? "✓ Set" : "❌ Missing",
 //     DB_DATABASE: process.env.DB_DATABASE ? "✓ Set" : "❌ Missing",
-//     GITHUB_TOKEN: process.env.GITHUB_TOKEN ? "✓ Set" : "❌ Missing",
+//     OPEN_API_KEY: process.env.OPEN_API_KEY ? "✓ Set" : "❌ Missing",
 //     timestamp: new Date().toISOString(),
 //     status: "Spend Analytix Backend Active",
 //   });
@@ -532,7 +532,7 @@ app.use(express.json());
 app.use("/exports", express.static(path.join(process.cwd(), "exports")));
 
 // Initialize OpenAI
-const token = process.env.GITHUB_TOKEN;
+const token = process.env.OPEN_API_KEY;
 const client = new OpenAI({
   baseURL: "https://models.inference.ai.azure.com",
   apiKey: token,
@@ -1044,7 +1044,7 @@ app.get("/env-debug", (req, res) => {
     DB_SERVER: process.env.DB_SERVER ? "✓ Set" : "❌ Missing",
     DB_USER: process.env.DB_USER ? "✓ Set" : "❌ Missing",
     DB_DATABASE: process.env.DB_DATABASE ? "✓ Set" : "❌ Missing",
-    GITHUB_TOKEN: process.env.GITHUB_TOKEN ? "✓ Set" : "❌ Missing",
+    OPEN_API_KEY: process.env.OPEN_API_KEY ? "✓ Set" : "❌ Missing",
     timestamp: new Date().toISOString(),
     status: "Spend Analytix Backend Active",
   });
